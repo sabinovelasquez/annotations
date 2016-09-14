@@ -1,0 +1,11 @@
+@import '../../css/functions';
+@import '../../css/colors';
+
+.annotations{
+  width: 100%;
+  height: 100%;
+  .head{
+    height: 91px;
+    background: $clouds;
+  }
+}

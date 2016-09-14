@@ -3,7 +3,7 @@
 
 .sidebar{
   position: relative;
-  width: 320px;
+  width: 100%;
   height: 100%;
   margin-top: 52px;
   border-right: 1px solid darken($clouds, 10);
@@ -12,7 +12,8 @@
     position: fixed;
     z-index: 2;
     top: 53px;
-    width: 320px;
+    top: 53px;
+    left: 0;
     padding: 8px;
     border-bottom: 1px solid darken($clouds, 10);
     background: darken($clouds, 5);
@@ -21,8 +22,10 @@
     line-height: 40px;
     position: fixed;
     z-index: 2;
+    z-index: 2;
     top: 104px;
-    width: 320px;
+    top: 104px;
+    left: 0;
     height: 40px;
     border-bottom: 1px solid darken($clouds, 10);
     background: darken($clouds, 5);
@@ -35,7 +38,7 @@
     }
   }
   .class-users{
-    margin-top: 144px;
+    margin-top: 92px;
     .class-user{
       line-height: 60px;
       height: 60px;
