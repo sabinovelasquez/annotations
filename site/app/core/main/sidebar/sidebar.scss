@@ -1,0 +1,48 @@
+@import '../../css/functions';
+@import '../../css/colors';
+
+.sidebar{
+  position: relative;
+  width: 320px;
+  height: 100%;
+  margin-top: 52px;
+  border-right: 1px solid darken($clouds, 10);
+  background: $clouds;
+  .searchbar{
+    position: fixed;
+    z-index: 2;
+    top: 53px;
+    width: 320px;
+    padding: 8px;
+    border-bottom: 1px solid darken($clouds, 10);
+    background: darken($clouds, 5);
+  }
+  .class-info{
+    line-height: 40px;
+    position: fixed;
+    z-index: 2;
+    top: 104px;
+    width: 320px;
+    height: 40px;
+    border-bottom: 1px solid darken($clouds, 10);
+    background: darken($clouds, 5);
+    .icon{
+      border-right: 1px solid darken($clouds, 10);
+    }
+    .class-title{
+      font-size: 1.2em;
+      font-weight: 700;
+    }
+  }
+  .class-users{
+    margin-top: 144px;
+    .class-user{
+      line-height: 60px;
+      height: 60px;
+      border-bottom: 1px solid darken($clouds, 10);
+      .num{
+        border-right: 1px solid darken($clouds, 10);
+      }
+    }
+  }
+}

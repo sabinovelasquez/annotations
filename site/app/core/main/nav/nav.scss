@@ -1,0 +1,17 @@
+@import '../../css/functions';
+@import '../../css/colors';
+
+nav.navbar{
+  color: white;
+  border-color: darken($blue, 10);
+  background: $blue;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+.navbar-default .navbar-nav > li > a{
+  color: white;
+  font-weight: 300;
+  i{
+    font-size: 20px;
+  }
+}

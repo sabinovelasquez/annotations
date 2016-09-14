@@ -1,0 +1,29 @@
+@import './core/css/functions';
+@import './core/css/colors';
+@import './core/css/common';
+// @import './core/css/logo';
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+body,
+html{
+  font-family: 'Montserrat', sans-serif;
+  height: 100%;
+}
+
+.glyphicon{
+  font-family: 'FontAwesome';
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  display: inline-block;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.glyphicon-chevron-left:before{
+  content: '\f053';
+}
+.glyphicon-chevron-right:before{
+  content: '\f054';
+}
