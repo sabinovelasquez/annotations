@@ -6,8 +6,11 @@ export default ngModule => {
       template: require('./annotations.jade'),
       scope: {},
       controllerAs: 'ann',
-      controller: function annCtrl() {
-        fbAPIService.printIt();
+      controller: function annotationsCtrl() {
+        this.fbAPIService = fbAPIService;
+        this.getClass = (classId) => {
+          //
+        };
       },
     };
   });

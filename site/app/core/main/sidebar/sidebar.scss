@@ -40,11 +40,17 @@
   .class-users{
     margin-top: 92px;
     .class-user{
-      line-height: 60px;
       height: 60px;
       border-bottom: 1px solid darken($clouds, 10);
       .num{
+        line-height: 60px;
         border-right: 1px solid darken($clouds, 10);
+      }
+      .class-title{
+        padding-top: 8px;
+      }
+      .lock{
+        line-height: 60px;
       }
     }
   }

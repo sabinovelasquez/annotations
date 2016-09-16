@@ -2,12 +2,10 @@ export default ngModule => {
   ngModule.service('fbAPIService', ($firebaseArray, $firebaseObject) => {
     const Firebase = require('firebase');
     return {
-      printIt: () => {
-        const firebaseClient = new Firebase('https://annotations-7379e.firebaseio.com/test');
-        const booked = $firebaseObject(firebaseClient);
-        booked.$loaded().then( (data) => {
-          this.data = data;
-        });
+      getClass: (classId) => {
+        const firebaseClient = new Firebase(`https://annotations-7379e.firebaseio.com/${classId}`);
+        const classData = $firebaseObject(firebaseClient);
+        return classData;
       },
       putBook: (test) => {
         const ref = new Firebase(`https://annotations-7379e.firebaseio.com/test/${test}`);
