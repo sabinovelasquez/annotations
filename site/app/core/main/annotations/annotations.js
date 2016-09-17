@@ -1,6 +1,5 @@
 export default ngModule => {
   require('./annotations.scss');
-  const moment = require('moment');
   ngModule.directive('annotations', function annotations(fbAPIService) {
     return {
       template: require('./annotations.jade'),
