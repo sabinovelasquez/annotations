@@ -7,10 +7,7 @@ export default ngModule => {
       scope: {},
       controllerAs: 'ann',
       controller: function annotationsCtrl() {
-        this.fbAPIService = fbAPIService;
-        this.getClass = (classId) => {
-          //
-        };
+        this.students = fbAPIService.getClass('1A');
       },
     };
   });
