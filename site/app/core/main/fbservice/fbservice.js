@@ -1,7 +1,7 @@
 export default ngModule => {
   ngModule.service('fbAPIService', ($firebaseArray, $firebaseObject) => {
     const Firebase = require('firebase');
-    return {
+    const service = {
       getClass: (classId) => {
         const firebaseClient = new Firebase(`https://annotations-7379e.firebaseio.com/${classId}`);
         const classData = $firebaseObject(firebaseClient);
@@ -12,5 +12,6 @@ export default ngModule => {
         ref.set({'test': 'test'});
       },
     };
+    return service;
   });
 };

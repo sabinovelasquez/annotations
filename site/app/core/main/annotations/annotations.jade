@@ -1,8 +1,29 @@
 .annotations
   .head
-    | {{ann.month}}
+    .week(ng-repeat='week in [1, 2, 3, 4]') {{ann.month}}
   .class
-    .ann(ng-repeat='ann in ann.students')
-      .block
-        a(ng-click='som')
-          | RG
+    .ann(ng-show='!ann.students')
+      .col-xs-12.text-center(style='line-height:60px;')
+        i.fa.fa-spinner.fa-pulse
+    .column(ng-repeat='week in [1, 2, 3, 4]')
+      .ann(ng-repeat='ann in ann.students')
+        .block
+          a.action(ng-click='som')
+            | CD
+          a.action(ng-click='som')
+            | R
+          a.action(ng-click='som')
+            | CV
+          a.action(ng-click='som')
+          a.action(ng-click='som')
+            i.fa.fa-warning
+          a.action(ng-click='som')
+            | R
+          a.action(ng-click='som')
+            | D
+          a.action(ng-click='som')
+            | AF
+          a.action(ng-click='som')
+            | AV
+          a.action(ng-click='som')
+            | O

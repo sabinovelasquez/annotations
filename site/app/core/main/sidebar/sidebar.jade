@@ -11,8 +11,9 @@
       .class-title.col-xs-10
         | 1A
   .class-users
-    .loading.text-center(ng-show='sidebar.loading')
-      i.fa.fa-spinner.fa-pulse
+    .class-user(ng-show='!sidebar.students')
+      .col-xs-12.text-center(style='line-height:60px;')
+        i.fa.fa-spinner.fa-pulse
     .class-user(ng-repeat='(key, user) in sidebar.students track by $index')
       .col-xs-2.num.text-center {{key}}
       .col-xs-8.class-title

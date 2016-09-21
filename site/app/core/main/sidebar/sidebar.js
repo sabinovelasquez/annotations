@@ -7,8 +7,9 @@ export default ngModule => {
       scope: {},
       controllerAs: 'sidebar',
       controller: function sidebarCtrl() {
-        this.students = fbAPIService.getClass('1A');
-        this.search = this.students;
+        fbAPIService.getClass('1A').$loaded().then( (data) => {
+          this.students = data;
+        });
       },
     };
   });
