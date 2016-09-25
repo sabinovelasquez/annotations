@@ -1,6 +1,6 @@
 .annotations
   .head
-    .week(ng-repeat='week in [1, 2, 3, 4]') {{ann.month}}
+    .week(ng-repeat='week in ann.weeks') {{week}}
   .class
     .ann(ng-show='!ann.students')
       .col-xs-12.text-center(style='line-height:60px;')

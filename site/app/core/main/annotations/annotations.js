@@ -9,7 +9,7 @@ export default ngModule => {
         fbAPIService.getClass('1A').$loaded().then( (data) => {
           this.students = data;
         });
-        this.month = calAPIService.currentMonth;
+        this.weeks = [calAPIService.firstWeek, calAPIService.secondWeek, calAPIService.thirdWeek, calAPIService.forthWeek];
       },
     };
   });
