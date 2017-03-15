@@ -7,9 +7,18 @@ export default ngModule => {
       scope: {},
       controllerAs: 'sidebar',
       controller: function sidebarCtrl() {
-        fbAPIService.getClass('1A').$loaded().then( (data) => {
-          this.students = data;
-        });
+        this.status = {
+          isopen: false,
+        };
+        this.course = 'Curso';
+        this.changeCourse = (courseId) => {
+          this.loader = true;
+          this.course = courseId;
+          fbAPIService.getClass(courseId).$loaded().then( (data) => {
+            this.students = data;
+            this.loader = false;
+          });
+        };
       },
     };
   });

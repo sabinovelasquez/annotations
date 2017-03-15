@@ -9,9 +9,17 @@
       .icon.text-center.col-xs-2
         i.fa.fa-sort-alpha-asc
       .class-title.col-xs-10
-        | 1A
+        .btn-group(uib-dropdown, is-open='sidebar.status.isopen')
+          button#single-button.btn.btn-primary(type='button', uib-dropdown-toggle)
+            | {{sidebar.course}}   
+            span.caret
+          ul.dropdown-menu(uib-dropdown-menu, aria-labelledby='single-button', role='menu')
+            li
+              a(ng-click='sidebar.changeCourse("1A")') 1A
+            li
+              a(ng-click='sidebar.changeCourse("2A")') 2A
   .class-users
-    .class-user(ng-show='!sidebar.students')
+    .class-user(ng-show='sidebar.loader===true')
       .col-xs-12.text-center(style='line-height:60px;')
         i.fa.fa-spinner.fa-pulse
     .class-user(ng-repeat='(key, user) in sidebar.students track by $index')
