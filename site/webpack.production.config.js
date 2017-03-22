@@ -10,12 +10,14 @@ module.exports = {
     entry: {
            app: ['./core/bootstrap.js']
     },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin()
-    ],
     output: {
-        path: APP,
+        path: __dirname + '/build',
         filename: "bundle.js"
+    },
+    resolve: {
+        alias: {
+            settings: path.join(__dirname, 'app', 'core')
+        }
     },
     module: {
         loaders: [

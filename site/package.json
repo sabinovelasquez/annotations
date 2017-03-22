@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --content-base app --hot",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -p --config webpack.production.config.js && cp ./app/index.html ./build"  },
+    "build": "webpack -p --config webpack.production.config.js && cp ./app/index.html ./build" 
+  },
   "author": "Sabino Velásquez <sabinovelasquez@gmail.com> (http://sabino.cl)",
   "license": "ISC",
   "devDependencies": {
