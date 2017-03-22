@@ -14,12 +14,9 @@ module.exports = {
         path: __dirname + '/build',
         filename: "bundle.js"
     },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin()
-    ],
     resolve: {
         alias: {
-            settings: path.join(__dirname, 'app', 'core')
+            settings: path.join(__dirname, 'app', 'core', 'config', 'services')
         }
     },
     module: {
