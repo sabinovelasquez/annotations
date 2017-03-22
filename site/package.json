@@ -1,7 +1,7 @@
 {
   "name": "webpack-boilerplate",
   "version": "1.0.0",
-  "description": "Starting point",
+  "description": "Annotations project",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --content-base app --hot",
