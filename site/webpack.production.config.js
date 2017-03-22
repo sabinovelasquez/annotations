@@ -10,14 +10,12 @@ module.exports = {
     entry: {
            app: ['./core/bootstrap.js']
     },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ],
     output: {
-        path: __dirname + '/build',
+        path: APP,
         filename: "bundle.js"
-    },
-    resolve: {
-        alias: {
-            settings: path.join(__dirname, 'app', 'core', 'config', 'settings.' + process.env.BRAINS_ENV)
-        }
     },
     module: {
         loaders: [
@@ -43,11 +41,7 @@ module.exports = {
             },
             {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: 'url-loader?limit=10000&mimetype=application/font-woff'
-            },
-            {
-                test: /\.otf?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+                loader: 'url-loader?limit=10000&minetype=application/font-woff'
             },
             {
                 test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
