@@ -1,4 +1,4 @@
 export default ngModule => {
-  require('./services/fbservice')(ngModule);
+  require('./services/fbService')(ngModule);
   require('./services/calAPIService')(ngModule);
 };

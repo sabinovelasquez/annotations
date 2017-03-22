@@ -16,7 +16,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            settings: path.join(__dirname, 'app', 'core', 'config', 'services')
+            settings: path.join(__dirname, 'app', 'core')
         }
     },
     module: {
