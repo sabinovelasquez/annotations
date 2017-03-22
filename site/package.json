@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --content-base app --hot",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -p --config webpack.production.config.js && cp ./app/index.html ./build" 
+    "build": "webpack -p --config webpack.production.config.js && cp ./app/index.html ./build"
   },
   "author": "Sabino Velásquez <sabinovelasquez@gmail.com> (http://sabino.cl)",
   "license": "ISC",
@@ -36,13 +36,13 @@
     "webpack-dev-server": "^1.11.0"
   },
   "dependencies": {
-    "angular": "^1.4.8",
-    "angular-animate": "^1.4.6",
+    "angular": "1.5.8",
+    "angular-animate": "1.5.8",
     "angular-module-resource": "git+https://github.com/agaete/angular-module-resource.git#3d35fe344e0a9bb690877dee294c2fa558be15cd",
     "angular-sanitize": "1.6.2",
     "angular-scroll": "^1.0.0",
     "angular-ui-bootstrap": "^1.2.5",
-    "angular-ui-router": "^0.2.15",
+    "angular-ui-router": "0.3.2",
     "angularfire": "1.2.0",
     "animate.css": "^3.4.0",
     "bootstrap": "^3.3.5",
