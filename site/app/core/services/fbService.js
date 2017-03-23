@@ -3,8 +3,8 @@ export default ngModule => {
     const Firebase = require('firebase');
     const service = {
       getClass: (classId) => {
-        const firebaseClient = new Firebase(`https://annotations-7379e.firebaseio.com/${classId}`);
-        const classData = $firebaseObject(firebaseClient);
+        const firebaseClient = new Firebase(`https://annotations-7379e.firebaseio.com/db/students`);
+        const classData = $firebaseObject(firebaseClient.orderByChild('course').equalTo(`${classId}`));
         return classData;
       },
       putBook: (test) => {
