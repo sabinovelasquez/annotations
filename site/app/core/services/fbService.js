@@ -11,6 +11,10 @@ export default ngModule => {
         const ref = new Firebase(`https://annotations-7379e.firebaseio.com/test/${test}`);
         ref.set({'test': 'test'});
       },
+      newStudent: (student) => {
+        const ref = new Firebase(`https://annotations-7379e.firebaseio.com/db/students`);
+        ref.push(student);
+      },
     };
     return service;
   });
