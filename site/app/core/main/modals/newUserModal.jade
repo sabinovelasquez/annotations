@@ -24,8 +24,8 @@
         input.form-control(type='number', placeholder='Enter student number on list', ng-model='modalUser.student.number')
     .form-group
       label Class
-      select.form-control(ng-model='modalUser.student.course')
-        option(ng-repeat='classId in modalUser.classes') {{classId.id}}
+      select.form-control(ng-model='modalUser.course',
+                          ng-options='classId.id for classId in modalUser.classes track by classId.id')
     button.btn.btn-primary Submit
 
   

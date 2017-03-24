@@ -1,5 +1,5 @@
 export default ngModule => {
-  ngModule.service('fbAPIService', ($firebaseArray, $firebaseObject) => {
+  ngModule.service('fbAPIService', ($firebaseArray, $firebaseObject, $window) => {
     const Firebase = require('firebase');
     const service = {
       getClass: (classId) => {
@@ -9,16 +9,24 @@ export default ngModule => {
       },
       getClasses: () => {
         const firebaseClient = new Firebase(`https://annotations-7379e.firebaseio.com/classes`);
-        const classesData = $firebaseObject(firebaseClient);
+        const classesData = $firebaseArray(firebaseClient);
         return classesData;
       },
       newStudent: (student) => {
         const ref = new Firebase(`https://annotations-7379e.firebaseio.com/students`);
-        ref.push(student);
+        ref.push(student, (resp) => {
+          if ( resp ) {
+            $window.alert(resp.code);
+          }
+        });
       },
       newClass: (classId) => {
         const ref = new Firebase(`https://annotations-7379e.firebaseio.com/classes`);
-        ref.push(classId);
+        ref.push(classId, (resp) => {
+          if ( resp ) {
+            $window.alert(resp.code);
+          }
+        });
       },
     };
     return service;
