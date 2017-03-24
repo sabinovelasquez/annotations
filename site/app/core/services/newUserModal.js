@@ -4,15 +4,16 @@ export default ngModule => {
       $uibModal.open({
         animation: true,
         template: require('../main/modals/newUserModal.jade'),
-        size: 'lg',
-        controllerAs: 'modal',
+        size: 'md',
+        controllerAs: 'modalUser',
         controller: function newUserModalCtrl($uibModalInstance) {
           this.close = () => $uibModalInstance.dismiss();
-          this.data = {
-            first: 'first node',
-            second: 'second node',
+          fbAPIService.getClasses().$loaded().then( (data) => {
+            this.classes = data;
+          });
+          this.newStudent = () => {
+            fbAPIService.newStudent(this.student);
           };
-          this.newStudent = fbAPIService.newStudent({user: 'sabino', course: '1A', 'data': this.data });
         },
       });
     };

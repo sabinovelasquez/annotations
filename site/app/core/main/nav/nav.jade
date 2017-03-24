@@ -12,6 +12,10 @@ nav.navbar.navbar-default
           a(du-smooth-scroll, duration='800', href='#example')
             i.fa.fa-home
         li
-          a
+          a(ng-click='nav.openClassModal()') 
             i.fa.fa-book   
-            |   Anotaciones
+            |   Add Class
+        li
+          a(ng-click='nav.openUserModal()') 
+            i.fa.fa-user-plus  
+            |   Add Student

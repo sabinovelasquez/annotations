@@ -1,4 +1,31 @@
-modal-head
-  h1 añadir
-modal-body
-  a(ng-click='modal.newStudent()') añadir test
+.modal-header
+  button.close(type='button', ng-click='modalUser.close()')
+    i.fa.fa-times
+  h4.modal-title Add Student
+.modal-body
+  form.form-vertical(ng-submit='modalUser.newStudent()')
+    .form-group
+      label Firstname
+      .input-group
+        .input-group-addon
+          i.fa.fa-user
+        input.form-control(type='text', placeholder='Enter student Firstname', ng-model='modalUser.student.name')
+    .form-group
+      label Lastname
+      .input-group
+        .input-group-addon
+          i.fa.fa-user
+        input.form-control(type='text', placeholder='Enter student Lastname', ng-model='modalUser.student.lastname')
+    .form-group
+      label Number
+      .input-group
+        .input-group-addon
+          i.fa.fa-address-book-o
+        input.form-control(type='number', placeholder='Enter student number on list', ng-model='modalUser.student.number')
+    .form-group
+      label Class
+      select.form-control(ng-model='modalUser.student.course')
+        option(ng-repeat='classId in modalUser.classes') {{classId.id}}
+    button.btn.btn-primary Submit
+
+  
