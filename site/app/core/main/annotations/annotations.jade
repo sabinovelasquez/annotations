@@ -1,16 +1,16 @@
 #annotations
-  table(st-table='ann.students', class='table table-striped')
+  table(st-pipe='ann.callServer', st-table='ann.students', class='table table-striped')
     thead
       tr
         th
           input.input-sm.form-control(st-search='firstname', placeholder='search for firstname', type='search')
         th
-          input.input-sm.form-control(st-search, placeholder='global, search', type='search')
+          input.input-sm.form-control(st-search, placeholder='global search', type='search')
       tr
         th(st-sort='number') Number
         th(st-sort='name') Name
         th(st-sort='lastname') Last Name
-      
+
     tbody
       tr(ng-repeat='row in ann.students')
         td {{row.number}}
