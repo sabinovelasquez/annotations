@@ -7,11 +7,14 @@
         th
           input.input-sm.form-control(st-search, placeholder='global search', type='search')
       tr
-        th(st-sort='number') Number
-        th(st-sort='name') Name
-        th(st-sort='lastname') Last Name
-
-    tbody
+        th(st-sort='ann.getters.sortbyNumber()') Number
+        th(st-sort='ann.getters.sortbyName') Name
+        th(st-sort='ann.getters.sortbyLastname') Last Name
+    tbody(ng-show='ann.isLoading')
+      tr
+        td.text-center(colspan=3)
+          .i.fa.fa-spinner.fa-pulse
+    tbody(ng-show='!ann.isLoading')
       tr(ng-repeat='row in ann.students')
         td {{row.number}}
         td {{row.name}}

@@ -1,19 +1,30 @@
 export default ngModule => {
   require('./annotations.scss');
-  ngModule.directive('annotations', function annotations(fbAPIService, calAPIService) {
+  ngModule.directive('annotations', function annotations(fbAPIService, calAPIService, currentService) {
     return {
       template: require('./annotations.jade'),
       scope: {},
       controllerAs: 'ann',
       controller: function annotationsCtrl() {
         this.callServer = () => {
+          console.log('called');
           this.isLoading = true;
-          fbAPIService.getClass('1A').$loaded().then( (data) => {
+          fbAPIService.getClass(currentService.classId).$loaded().then( (data) => {
             this.students = data;
+            this.isLoading = false;
           });
         };
-        this.predicates = ['number', 'name', 'lastname'];
-        this.selectedPredicate = this.predicates[0];
+        this.getters = {
+          sortbyNumber: () => {
+            // __.sortBy(this.students, 'number');
+          },
+          sortbyName: (row) => {
+            return this.students[row.id].name;
+          },
+          sortbyLastname: (row) => {
+            return this.students[row.id].lastname;
+          },
+        };
         this.weeks = [calAPIService.firstWeek, calAPIService.secondWeek, calAPIService.thirdWeek, calAPIService.forthWeek];
       },
     };
