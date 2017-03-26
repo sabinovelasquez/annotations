@@ -6,24 +6,20 @@ export default ngModule => {
       scope: {},
       controllerAs: 'ann',
       controller: function annotationsCtrl() {
-        this.callServer = () => {
-          console.log('called');
+        const __ = require('underscore');
+        this.callServer = (tableState) => {
           this.isLoading = true;
           fbAPIService.getClass(currentService.classId).$loaded().then( (data) => {
-            this.students = data;
             this.isLoading = false;
+            this.students = __.sortBy(data, tableState.sort.predicate);
+            if ( tableState.sort.reverse ) {
+              this.students.reverse();
+            }
+            if ( tableState.search.predicateObject ) {
+              this.students = __.where(this.students, tableState.search.predicateObject);
+            }
+            // console.log(this.students);
           });
-        };
-        this.getters = {
-          sortbyNumber: () => {
-            // __.sortBy(this.students, 'number');
-          },
-          sortbyName: (row) => {
-            return this.students[row.id].name;
-          },
-          sortbyLastname: (row) => {
-            return this.students[row.id].lastname;
-          },
         };
         this.weeks = [calAPIService.firstWeek, calAPIService.secondWeek, calAPIService.thirdWeek, calAPIService.forthWeek];
       },
