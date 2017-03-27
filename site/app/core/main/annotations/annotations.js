@@ -20,6 +20,17 @@ export default ngModule => {
           'O',
           'D',
         ];
+        this.hasAnn = (arr, type, week) => {
+          const res = __.where(arr, {when: week.toString(), type: type});
+          const build = {};
+          let html = type;
+          if ( res.length > 0 ) {
+            html = `${type} <span>${res.length}</span>`;
+          }
+          build.html = html;
+          build.num = res.length;
+          return build;
+        };
         this.callServer = (tableState) => {
           this.isLoading = true;
           fbAPIService.getClass(currentService.classId).$loaded().then( (data) => {
@@ -33,9 +44,11 @@ export default ngModule => {
             }
           });
         };
-        this.sendAnn = (ann, week) => {
-          console.log(ann);
-          console.log(week);
+        this.sendAnn = (key, type, week) => {
+          const annotation = {};
+          annotation.when = week.toString();
+          annotation.type = type;
+          fbAPIService.addAnn(key, annotation);
         };
         this.sendWarning = (week) => {
           console.log(week);

@@ -42,6 +42,7 @@
     .circle-m{
       font-size: .8em;
       line-height: 20px;
+      position: relative;
       width: 20px;
       height: 20px;
       margin: 0 2px;
@@ -50,32 +51,45 @@
       color: $dark-grey;
       border-radius: 50%;
       background: lighten($dark-grey,60);
-      &:hover{
+      span{
+        line-height: 12px;
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 12px;
+        height: 12px;
+        text-align: center;
+        color: white;
+        color: white;
+        border-radius: 50%;
+        background: lighten($dark-grey,10);
+      }
+      &:hover, &.has{
         text-decoration: none;
         color: white;
       }
     }
     a.circle-g{
       float: left;
-      &:hover{
+      &:hover, &.has{
         background: $good;
       }
     }
     a.circle-b{
       float: left;
-      &:hover{
+      &:hover, &.has{
         background: $bad;
       }
     }
     a.circle-w{
       float: right;
-      &:hover{
+      &:hover, &.has{
         background: $war;
       }
     }
     a.circle-m{
       float: right;
-      &:hover{
+      &:hover, &.has{
         background: $merit;
       }
     }

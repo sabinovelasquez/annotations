@@ -43,37 +43,61 @@
         td 
         td 
         td
-          //- a.circle-w(ng-click='ann.sendWarning(ann.weeks[0])')
+          //- a.circle-w(ng-click='ann.sendWarning(ann.weeks[0]._d)')
             //- i.fa.fa-trophy
-          a.circle-g(ng-repeat='anplus in ann.positives', ng-click='ann.sendAnn(anplus, ann.weeks[0])') {{anplus}}
+          a.circle-g( ng-repeat='anplus in ann.positives',
+                      ng-bind-html='ann.hasAnn(row.annotations, anplus, ann.weeks[0]._d).html',
+                      ng-click='ann.sendAnn(row.$id, anplus, ann.weeks[0]._d)'
+                      ng-class='{"has": ann.hasAnn(row.annotations, anplus, ann.weeks[0]._d).num > 0}')
           hr
-          a.circle-w(ng-click='ann.sendWarning(ann.weeks[0])')
+          a.circle-w(ng-click='ann.sendWarning(ann.weeks[0]._d)')
             i.fa.fa-exclamation-triangle
-          a.circle-b(ng-repeat='anneg in ann.negatives', ng-click='ann.sendAnn(anneg, ann.weeks[0])') {{anneg}}
+          a.circle-b( ng-repeat='anneg in ann.negatives',
+                      ng-bind-html='ann.hasAnn(row.annotations, anneg, ann.weeks[0]._d).html',
+                      ng-click='ann.sendAnn(row.$id, anneg, ann.weeks[0]._d)'
+                      ng-class='{"has": ann.hasAnn(row.annotations, anneg, ann.weeks[0]._d).num > 0}')
         td
-          //- a.circle-w(ng-click='ann.sendWarning(ann.weeks[0])')
+          //- a.circle-w(ng-click='ann.sendWarning(ann.weeks[0]._d)')
             //- i.fa.fa-trophy
-          a.circle-g(ng-repeat='anplus in ann.positives', ng-click='ann.sendAnn(anplus, ann.weeks[1])') {{anplus}}
+          a.circle-g( ng-repeat='anplus in ann.positives',
+                      ng-bind-html='ann.hasAnn(row.annotations, anplus, ann.weeks[1]._d).html',
+                      ng-click='ann.sendAnn(row.$id, anplus, ann.weeks[1]._d)'
+                      ng-class='{"has": ann.hasAnn(row.annotations, anplus, ann.weeks[1]._d).num > 0}')
           hr
-          a.circle-w(ng-click='ann.sendWarning(ann.weeks[0])')
+          a.circle-w(ng-click='ann.sendWarning(ann.weeks[1]._d)')
             i.fa.fa-exclamation-triangle
-          a.circle-b(ng-repeat='anneg in ann.negatives', ng-click='ann.sendAnn(anneg, ann.weeks[0])') {{anneg}}
+          a.circle-b( ng-repeat='anneg in ann.negatives',
+                      ng-bind-html='ann.hasAnn(row.annotations, anneg, ann.weeks[1]._d).html',
+                      ng-click='ann.sendAnn(row.$id, anneg, ann.weeks[1]._d)'
+                      ng-class='{"has": ann.hasAnn(row.annotations, anneg, ann.weeks[1]._d).num > 0}')
         td
-          //- a.circle-w(ng-click='ann.sendWarning(ann.weeks[0])')
+          //- a.circle-w(ng-click='ann.sendWarning(ann.weeks[0]._d)')
             //- i.fa.fa-trophy
-          a.circle-g(ng-repeat='anplus in ann.positives', ng-click='ann.sendAnn(anplus, ann.weeks[2])') {{anplus}}
+          a.circle-g( ng-repeat='anplus in ann.positives',
+                      ng-bind-html='ann.hasAnn(row.annotations, anplus, ann.weeks[2]._d).html',
+                      ng-click='ann.sendAnn(row.$id, anplus, ann.weeks[2]._d)'
+                      ng-class='{"has": ann.hasAnn(row.annotations, anplus, ann.weeks[2]._d).num > 0}')
           hr
-          a.circle-w(ng-click='ann.sendWarning(ann.weeks[0])')
+          a.circle-w(ng-click='ann.sendWarning(ann.weeks[2]._d)')
             i.fa.fa-exclamation-triangle
-          a.circle-b(ng-repeat='anneg in ann.negatives', ng-click='ann.sendAnn(anneg, ann.weeks[0])') {{anneg}}
+          a.circle-b( ng-repeat='anneg in ann.negatives',
+                      ng-bind-html='ann.hasAnn(row.annotations, anneg, ann.weeks[2]._d).html',
+                      ng-click='ann.sendAnn(row.$id, anneg, ann.weeks[2]._d)'
+                      ng-class='{"has": ann.hasAnn(row.annotations, anneg, ann.weeks[2]._d).num > 0}')
         td
-          //- a.circle-w(ng-click='ann.sendWarning(ann.weeks[0])')
+          //- a.circle-w(ng-click='ann.sendWarning(ann.weeks[0]._d)')
             //- i.fa.fa-trophy
-          a.circle-g(ng-repeat='anplus in ann.positives', ng-click='ann.sendAnn(anplus, ann.weeks[3])') {{anplus}}
+          a.circle-g( ng-repeat='anplus in ann.positives',
+                      ng-bind-html='ann.hasAnn(row.annotations, anplus, ann.weeks[3]._d).html',
+                      ng-click='ann.sendAnn(row.$id, anplus, ann.weeks[3]._d)'
+                      ng-class='{"has": ann.hasAnn(row.annotations, anplus, ann.weeks[3]._d).num > 0}')
           hr
-          a.circle-w(ng-click='ann.sendWarning(ann.weeks[0])')
+          a.circle-w(ng-click='ann.sendWarning(ann.weeks[3]._d)')
             i.fa.fa-exclamation-triangle
-          a.circle-b(ng-repeat='anneg in ann.negatives', ng-click='ann.sendAnn(anneg, ann.weeks[0])') {{anneg}}
+          a.circle-b( ng-repeat='anneg in ann.negatives',
+                      ng-bind-html='ann.hasAnn(row.annotations, anneg, ann.weeks[3]._d).html',
+                      ng-click='ann.sendAnn(row.$id, anneg, ann.weeks[3]._d)'
+                      ng-class='{"has": ann.hasAnn(row.annotations, anneg, ann.weeks[3]._d).num > 0}')
     tbody(ng-show='ann.isLoading')
       tr
         td.text-center(colspan=17)

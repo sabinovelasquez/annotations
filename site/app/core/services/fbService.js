@@ -28,6 +28,14 @@ export default ngModule => {
           }
         });
       },
+      addAnn: (key, ann) => {
+        const ref = new Firebase(`https://annotations-7379e.firebaseio.com/students/${key}/annotations`);
+        ref.push(ann, (resp) => {
+          if ( resp ) {
+            $window.alert(resp.code);
+          }
+        });
+      },
     };
     return service;
   });
