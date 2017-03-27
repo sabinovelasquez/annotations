@@ -5,23 +5,22 @@
         th.text-center
           i.fa.fa-search
         th
-          input.input-sm.form-control(st-search='name', placeholder='search for First Name', type='search')
-        th
           input.input-sm.form-control(st-search='lastname', placeholder='search for Last Name', type='search')
+        //- th
+        //-   input.input-sm.form-control(st-search='lastname', placeholder='search for Last Name', type='search')
         th.good.text-center(colspan=3) Positive
         th.bad.text-center(colspan=6) Negative
         th.war.text-center
           i.fa.fa-exclamation-triangle
         th.text-center.col-sm-2
           i.fa.fa-chevron-left
-        th.text-center.col-sm-4(colspan=2) Month
+        th.text-center.col-sm-4(colspan=2) Current 4 Weeks
         th.text-center.col-sm-2
           i.fa.fa-chevron-right
       tr
         th(st-sort='number', st-sort-default='true')
           i.fa.fa-sort-amount-desc
-        th(st-sort='name') First Name
-        th(st-sort='lastname') Last Name
+        th(st-sort='lastname') Name
         th(ng-repeat='anplus in ann.positives') {{anplus}}
         th(ng-repeat='anneg in ann.negatives') {{anneg}}
         th
@@ -31,8 +30,7 @@
     tbody(ng-show='!ann.isLoading')
       tr(ng-repeat='row in ann.students')
         td {{row.number}}
-        td {{row.name}}
-        td {{row.lastname}}
+        td {{row.name}} {{row.lastname}}
         //- TODO: total list
         td 
         td 
@@ -45,37 +43,37 @@
         td 
         td 
         td
-          //- a.circle-w(ng-click='')
+          //- a.circle-w(ng-click='ann.sendWarning(ann.weeks[0])')
             //- i.fa.fa-trophy
-          a.circle-g(ng-repeat='anplus in ann.positives') {{anplus}}
+          a.circle-g(ng-repeat='anplus in ann.positives', ng-click='ann.sendAnn(anplus, ann.weeks[0])') {{anplus}}
           hr
-          a.circle-w(ng-click='')
+          a.circle-w(ng-click='ann.sendWarning(ann.weeks[0])')
             i.fa.fa-exclamation-triangle
-          a.circle-b(ng-repeat='anneg in ann.negatives') {{anneg}}
+          a.circle-b(ng-repeat='anneg in ann.negatives', ng-click='ann.sendAnn(anneg, ann.weeks[0])') {{anneg}}
         td
-          //- a.circle-w(ng-click='')
+          //- a.circle-w(ng-click='ann.sendWarning(ann.weeks[0])')
             //- i.fa.fa-trophy
-          a.circle-g(ng-repeat='anplus in ann.positives') {{anplus}}
+          a.circle-g(ng-repeat='anplus in ann.positives', ng-click='ann.sendAnn(anplus, ann.weeks[1])') {{anplus}}
           hr
-          a.circle-w(ng-click='')
+          a.circle-w(ng-click='ann.sendWarning(ann.weeks[0])')
             i.fa.fa-exclamation-triangle
-          a.circle-b(ng-repeat='anneg in ann.negatives') {{anneg}}
+          a.circle-b(ng-repeat='anneg in ann.negatives', ng-click='ann.sendAnn(anneg, ann.weeks[0])') {{anneg}}
         td
-          //- a.circle-w(ng-click='')
+          //- a.circle-w(ng-click='ann.sendWarning(ann.weeks[0])')
             //- i.fa.fa-trophy
-          a.circle-g(ng-repeat='anplus in ann.positives') {{anplus}}
+          a.circle-g(ng-repeat='anplus in ann.positives', ng-click='ann.sendAnn(anplus, ann.weeks[2])') {{anplus}}
           hr
-          a.circle-w(ng-click='')
+          a.circle-w(ng-click='ann.sendWarning(ann.weeks[0])')
             i.fa.fa-exclamation-triangle
-          a.circle-b(ng-repeat='anneg in ann.negatives') {{anneg}}
+          a.circle-b(ng-repeat='anneg in ann.negatives', ng-click='ann.sendAnn(anneg, ann.weeks[0])') {{anneg}}
         td
-          //- a.circle-w(ng-click='')
+          //- a.circle-w(ng-click='ann.sendWarning(ann.weeks[0])')
             //- i.fa.fa-trophy
-          a.circle-g(ng-repeat='anplus in ann.positives') {{anplus}}
+          a.circle-g(ng-repeat='anplus in ann.positives', ng-click='ann.sendAnn(anplus, ann.weeks[3])') {{anplus}}
           hr
-          a.circle-w(ng-click='')
+          a.circle-w(ng-click='ann.sendWarning(ann.weeks[0])')
             i.fa.fa-exclamation-triangle
-          a.circle-b(ng-repeat='anneg in ann.negatives') {{anneg}}
+          a.circle-b(ng-repeat='anneg in ann.negatives', ng-click='ann.sendAnn(anneg, ann.weeks[0])') {{anneg}}
     tbody(ng-show='ann.isLoading')
       tr
         td.text-center(colspan=17)
