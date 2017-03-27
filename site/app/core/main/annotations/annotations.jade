@@ -21,8 +21,8 @@
         th(st-sort='number', st-sort-default='true')
           i.fa.fa-sort-amount-desc
         th(st-sort='lastname') Name
-        th(ng-repeat='anplus in ann.positives') {{anplus}}
-        th(ng-repeat='anneg in ann.negatives') {{anneg}}
+        th(ng-repeat='anplus in ann.positives', st-sort='{{anplus}}') {{anplus}}
+        th(ng-repeat='anneg in ann.negatives', st-sort='{{anneg}}') {{anneg}}
         th
         th(ng-repeat='week in ann.weeks')
           i.fa.fa-calendar

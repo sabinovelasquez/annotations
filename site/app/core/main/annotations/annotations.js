@@ -65,9 +65,9 @@ export default ngModule => {
           }
           this.updateVals();
         };
-        this.sendWarning = (week) => {
-          console.log(week);
-        };
+        // this.sendWarning = (week) => {
+        //   console.log(week);
+        // };
         this.weeks = [calAPIService.firstWeek, calAPIService.secondWeek, calAPIService.thirdWeek, calAPIService.forthWeek];
       },
     };
