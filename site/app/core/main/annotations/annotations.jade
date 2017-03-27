@@ -37,8 +37,6 @@
           strong.bad(ng-bind='row.totals[an].length')
         td
         td
-          //- a.circle-w(ng-click='ann.sendWarning(ann.weeks[0]._d)')
-            //- i.fa.fa-trophy
           a.circle-g( ng-repeat='anplus in ann.positives',
                       ng-bind-html='ann.hasAnn(row.annotations, anplus, ann.weeks[0]._d).html',
                       ng-click='ann.sendAnn(row.$id, anplus, ann.weeks[0]._d)'

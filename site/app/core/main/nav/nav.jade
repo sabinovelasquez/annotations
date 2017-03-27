@@ -12,10 +12,13 @@ nav.navbar.navbar-default
           a(du-smooth-scroll, duration='800', href='#example')
             i.fa.fa-home
         li
-          a(ng-click='nav.openClassModal()') 
-            i.fa.fa-book   
+          a(ng-click='nav.openClassModal()')
+            i.fa.fa-book
             |   Add Class
         li
-          a(ng-click='nav.openUserModal()') 
-            i.fa.fa-user-plus  
+          a(ng-click='nav.openUserModal()')
+            i.fa.fa-user-plus
             |   Add Student
+        li
+          a(ng-click='nav.currentService.edit=!nav.currentService.edit;')
+            i.fa(ng-class='{"fa-calendar-times-o": !nav.currentService.edit, "fa-calendar-check-o": nav.currentService.edit}')

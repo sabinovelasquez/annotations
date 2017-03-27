@@ -20,7 +20,7 @@ export default ngModule => {
           'O',
           'D',
         ];
-        this.edit = false;
+        this.currentService = currentService;
         this.hasAnn = (arr, type, week) => {
           const res = __.where(arr, {when: week.toString(), type: type});
           const build = {};
@@ -56,7 +56,13 @@ export default ngModule => {
           const annotation = {};
           annotation.when = week.toString();
           annotation.type = type;
-          fbAPIService.addAnn(key, annotation);
+          if ( this.currentService.edit ) {
+            fbAPIService.addAnn(key, annotation);
+          }else {
+            const arrToFind = __.filter(this.students, {$id: key});
+            const keyToDel = __.findKey(arrToFind[0].annotations, {when: annotation.when, type: annotation.type});
+            fbAPIService.delAnn(key, keyToDel);
+          }
           this.updateVals();
         };
         this.sendWarning = (week) => {

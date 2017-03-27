@@ -36,6 +36,14 @@ export default ngModule => {
           }
         });
       },
+      delAnn: (key, id) => {
+        const ref = new Firebase(`https://annotations-7379e.firebaseio.com/students/${key}/annotations/${id}`);
+        ref.remove().then((resp) => {
+          if ( resp ) {
+            $window.alert(resp.code);
+          }
+        });
+      },
     };
     return service;
   });
