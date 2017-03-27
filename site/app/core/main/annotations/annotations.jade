@@ -1,25 +1,85 @@
-#annotations
-  table.table.table-striped(st-pipe='ann.callServer', st-table='ann.students')
+#annotations.table-responsive
+  table.ann.table-bordered.table.table-striped(st-pipe='ann.callServer', st-table='ann.students')
     thead
       tr
-        th Search
+        th.text-center
+          i.fa.fa-search
         th
-          input.input-sm.form-control(st-search='name', placeholder='search for name', type='search')
+          input.input-sm.form-control(st-search='name', placeholder='search for First Name', type='search')
         th
-          input.input-sm.form-control(st-search='lastname', placeholder='search for lastname', type='search')
+          input.input-sm.form-control(st-search='lastname', placeholder='search for Last Name', type='search')
+        th.good.text-center(colspan=3) Positive
+        th.bad.text-center(colspan=6) Negative
+        th.war.text-center
+          i.fa.fa-exclamation-triangle
+        th.text-center.col-sm-2
+          i.fa.fa-chevron-left
+        th.text-center.col-sm-4(colspan=2) Month
+        th.text-center.col-sm-2
+          i.fa.fa-chevron-right
       tr
-        th(st-sort='number', st-sort-default='true') Number
-        th(st-sort='name') Name
+        th(st-sort='number', st-sort-default='true')
+          i.fa.fa-sort-amount-desc
+        th(st-sort='name') First Name
         th(st-sort='lastname') Last Name
-    tbody(ng-show='ann.isLoading')
-      tr
-        td.text-center(colspan=3)
-          .i.fa.fa-spinner.fa-pulse
+        th(ng-repeat='anplus in ann.positives') {{anplus}}
+        th(ng-repeat='anneg in ann.negatives') {{anneg}}
+        th
+        th(ng-repeat='week in ann.weeks')
+          i.fa.fa-calendar
+          span   {{week._d | date:'MMM dd'}}
     tbody(ng-show='!ann.isLoading')
       tr(ng-repeat='row in ann.students')
         td {{row.number}}
         td {{row.name}}
         td {{row.lastname}}
+        //- TODO: total list
+        td 
+        td 
+        td 
+        td
+        td 
+        td 
+        td 
+        td 
+        td 
+        td 
+        td
+          //- a.circle-w(ng-click='')
+            //- i.fa.fa-trophy
+          a.circle-g(ng-repeat='anplus in ann.positives') {{anplus}}
+          hr
+          a.circle-w(ng-click='')
+            i.fa.fa-exclamation-triangle
+          a.circle-b(ng-repeat='anneg in ann.negatives') {{anneg}}
+        td
+          //- a.circle-w(ng-click='')
+            //- i.fa.fa-trophy
+          a.circle-g(ng-repeat='anplus in ann.positives') {{anplus}}
+          hr
+          a.circle-w(ng-click='')
+            i.fa.fa-exclamation-triangle
+          a.circle-b(ng-repeat='anneg in ann.negatives') {{anneg}}
+        td
+          //- a.circle-w(ng-click='')
+            //- i.fa.fa-trophy
+          a.circle-g(ng-repeat='anplus in ann.positives') {{anplus}}
+          hr
+          a.circle-w(ng-click='')
+            i.fa.fa-exclamation-triangle
+          a.circle-b(ng-repeat='anneg in ann.negatives') {{anneg}}
+        td
+          //- a.circle-w(ng-click='')
+            //- i.fa.fa-trophy
+          a.circle-g(ng-repeat='anplus in ann.positives') {{anplus}}
+          hr
+          a.circle-w(ng-click='')
+            i.fa.fa-exclamation-triangle
+          a.circle-b(ng-repeat='anneg in ann.negatives') {{anneg}}
+    tbody(ng-show='ann.isLoading')
+      tr
+        td.text-center(colspan=17)
+          .i.fa.fa-spinner.fa-pulse
     tbody(ng-show='!ann.isLoading && ann.students.length === 0')
       tr
-        td.text-center(colspan=3) No matches found. Type the exact name considering uppercases.
+        td.text-center(colspan=17) No matches found. Type the exact name considering uppercases.

@@ -6,49 +6,77 @@
   width: 100%;
   height: 100%;
   margin-top: 52px;
+  .good{
+    color: $good;
+  }
+  .bad{
+    color: $bad;
+  }
+  .war{
+    color: $war;
+  }
   .st-sort-ascent:before{
     content: '\25B2';
   }
   .st-sort-descent:before{
     content: '\25BC';
   }
-  .head{
-    position: fixed;
-    top: 53px;
-    width: 100%;
-    height: 91px;
-    background: $clouds;
-    .week{
-      line-height: 91px;
-      float: left;
-      width: 200px;
-      text-align: center;
-      border-right: 1px solid darken($clouds, 10);
+  table.ann{
+    font-size: .8em;
+    input{
+      font-size: 1em;
+      font-weight: 400;
     }
-  }
-  .class{
-    width: 800px;
-    margin-top: 144px;
-    .column{
+    td.nopad{
+      padding: 0;
+    }
+    hr{
+      width: 100%;
+      height: 5px;
+      margin: 0;
+      border: none;
+    }
+    a.circle-g,
+    a.circle-b,
+    a.circle-w,
+    .circle-m{
+      font-size: .8em;
+      line-height: 20px;
+      width: 20px;
+      height: 20px;
+      margin: 0 2px;
+      cursor: pointer;
+      text-align: center;
+      color: $dark-grey;
+      border-radius: 50%;
+      background: lighten($dark-grey,60);
+      &:hover{
+        text-decoration: none;
+        color: white;
+      }
+    }
+    a.circle-g{
       float: left;
-      width: 200px;
-      .ann{
-        height: 60px;
-        border-bottom: 1px solid $clouds;
-        .block{
-          float: left;
-          width: 200px;
-          height: 60px;
-          .action{
-            line-height: 30px;
-            display: block;
-            float: left;
-            width: 40px;
-            height: 30px;
-            text-align: center;
-            border: 1px solid $clouds;
-          }
-        }
+      &:hover{
+        background: $good;
+      }
+    }
+    a.circle-b{
+      float: left;
+      &:hover{
+        background: $bad;
+      }
+    }
+    a.circle-w{
+      float: right;
+      &:hover{
+        background: $war;
+      }
+    }
+    a.circle-m{
+      float: right;
+      &:hover{
+        background: $merit;
       }
     }
   }
