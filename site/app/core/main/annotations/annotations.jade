@@ -31,17 +31,11 @@
       tr(ng-repeat='row in ann.students')
         td {{row.number}}
         td {{row.name}} {{row.lastname}}
-        //- TODO: total list
-        td 
-        td 
-        td 
+        td.text-center(ng-repeat='an in ann.positives')
+          span.good(ng-bind='row.totals[an].length')
+        td.text-center(ng-repeat='an in ann.negatives')
+          strong.bad(ng-bind='row.totals[an].length')
         td
-        td 
-        td 
-        td 
-        td 
-        td 
-        td 
         td
           //- a.circle-w(ng-click='ann.sendWarning(ann.weeks[0]._d)')
             //- i.fa.fa-trophy

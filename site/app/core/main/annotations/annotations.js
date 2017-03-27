@@ -20,6 +20,7 @@ export default ngModule => {
           'O',
           'D',
         ];
+        this.edit = false;
         this.hasAnn = (arr, type, week) => {
           const res = __.where(arr, {when: week.toString(), type: type});
           const build = {};
@@ -31,10 +32,15 @@ export default ngModule => {
           build.num = res.length;
           return build;
         };
+        this.updateVals = () => {
+          angular.forEach(this.students, (val, num) => {
+            const total = __.groupBy(val.annotations, 'type');
+            this.students[num].totals = total;
+          });
+        };
         this.callServer = (tableState) => {
           this.isLoading = true;
           fbAPIService.getClass(currentService.classId).$loaded().then( (data) => {
-            this.isLoading = false;
             this.students = __.sortBy(data, tableState.sort.predicate);
             if ( tableState.sort.reverse ) {
               this.students.reverse();
@@ -42,6 +48,8 @@ export default ngModule => {
             if ( tableState.search.predicateObject ) {
               this.students = __.where(this.students, tableState.search.predicateObject);
             }
+            this.isLoading = false;
+            this.updateVals();
           });
         };
         this.sendAnn = (key, type, week) => {
@@ -49,6 +57,7 @@ export default ngModule => {
           annotation.when = week.toString();
           annotation.type = type;
           fbAPIService.addAnn(key, annotation);
+          this.updateVals();
         };
         this.sendWarning = (week) => {
           console.log(week);
