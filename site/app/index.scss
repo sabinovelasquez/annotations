@@ -29,3 +29,23 @@ html{
 .glyphicon-chevron-right:before{
   content: '\f054';
 }
+.col{
+  float: left;
+  h2{
+    font-size: 1em;
+    line-height: 34px;
+    margin: 0 10px 0 0;
+  }
+  .btn{
+    margin: 0 10px;
+  }
+}
+.good{
+  color: $good;
+}
+.bad{
+  color: $bad;
+}
+.war{
+  color: $war;
+}

@@ -3,18 +3,9 @@
 
 #annotations{
   position: relative;
-  width: 100%;
+  width: 98%;
+  margin: 20px 1% 0;
   height: 100%;
-  margin-top: 20px;
-  .good{
-    color: $good;
-  }
-  .bad{
-    color: $bad;
-  }
-  .war{
-    color: $war;
-  }
   .st-sort-ascent:before{
     content: '\25B2';
   }

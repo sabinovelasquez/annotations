@@ -1,3 +1,21 @@
+.container-fluid
+  .col
+    h2 Select Class:
+  .col
+    .btn-group(uib-dropdown='')
+      button.btn.btn-default(type='button', uib-dropdown-toggle='')
+        i.fa.fa-book
+        |   {{ann.currentService.classId}}  
+        span.caret
+      ul.dropdown-menu(uib-dropdown-menu='', role='menu')
+        li(role='menuitem', ng-repeat='classId in ann.classes')
+          a(ng-click='ann.changeClass(classId.id)') {{classId.id}}
+  .col
+    p.text-center
+      a.btn(ng-click='ann.currentService.edit=!ann.currentService.edit;',
+            ng-class='{"btn-danger": !ann.currentService.edit, "btn-success": ann.currentService.edit}')
+        i.fa(ng-class='{"fa-calendar-minus-o": !ann.currentService.edit,"fa-calendar-plus-o": ann.currentService.edit}')
+
 #annotations.table-responsive
   table.ann.table-bordered.table.table-striped(st-pipe='ann.callServer', st-table='ann.students')
     thead
@@ -6,8 +24,6 @@
           i.fa.fa-search
         th
           input.input-sm.form-control(st-search='lastname', placeholder='search for Last Name', type='search')
-        //- th
-        //-   input.input-sm.form-control(st-search='lastname', placeholder='search for Last Name', type='search')
         th.good.text-center(colspan=3) Positive
         th.bad.text-center(colspan=6) Negative
         th.war.text-center

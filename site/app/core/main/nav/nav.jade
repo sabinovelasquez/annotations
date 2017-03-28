@@ -19,12 +19,3 @@ nav.navbar.navbar-default
           a(ng-click='nav.openUserModal()')
             i.fa.fa-user-plus
             |   Add Student
-
-.container
-  h3.text-center(ng-show='nav.currentService.edit') You can Add points.
-  h3.text-center(ng-show='!nav.currentService.edit') You can Delete points.
-  p.text-center
-    a.btn.btn-default(ng-click='nav.currentService.edit=!nav.currentService.edit;')
-      i.fa(ng-class='{"fa-calendar-times-o": nav.currentService.edit, "fa-calendar-check-o": !nav.currentService.edit}')
-      span(ng-show='nav.currentService.edit')   Enter to Edit mode.
-      span(ng-show='!nav.currentService.edit')   Enter to Safe mode.

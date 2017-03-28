@@ -21,6 +21,13 @@ export default ngModule => {
           'D',
         ];
         this.currentService = currentService;
+        fbAPIService.getClasses().$loaded().then( (data) => {
+          this.classes = data;
+        });
+        this.changeClass = (classId) => {
+          this.currentService.classId = classId;
+          this.callServer(this.tableState);
+        };
         this.hasAnn = (arr, type, week) => {
           const res = __.where(arr, {when: week.toString(), type: type});
           const build = {};
@@ -41,6 +48,7 @@ export default ngModule => {
         this.callServer = (tableState) => {
           this.isLoading = true;
           fbAPIService.getClass(currentService.classId).$loaded().then( (data) => {
+            this.tableState = tableState;
             this.students = __.sortBy(data, tableState.sort.predicate);
             if ( tableState.sort.reverse ) {
               this.students.reverse();
