@@ -15,7 +15,7 @@
       a.btn(ng-click='ann.currentService.edit=!ann.currentService.edit;',
             ng-class='{"btn-danger": !ann.currentService.edit, "btn-success": ann.currentService.edit}')
         i.fa(ng-class='{"fa-calendar-minus-o": !ann.currentService.edit,"fa-calendar-plus-o": ann.currentService.edit}')
-
+  .col {{ann.currentService.weekNum}}
 #annotations.table-responsive
   table.ann.table-bordered.table.table-striped(st-pipe='ann.callServer', st-table='ann.students')
     thead
@@ -28,10 +28,10 @@
         th.bad.text-center(colspan=6) Negative
         th.war.text-center
           i.fa.fa-exclamation-triangle
-        th.text-center.col-sm-2
+        th.text-center.col-sm-2(ng-click='ann.changeWeeks(-4)')
           i.fa.fa-chevron-left
         th.text-center.col-sm-4(colspan=2) Current 4 Weeks
-        th.text-center.col-sm-2
+        th.text-center.col-sm-2(ng-click='ann.changeWeeks(4)')
           i.fa.fa-chevron-right
       tr
         th(st-sort='number', st-sort-default='true')
@@ -49,8 +49,10 @@
         td {{row.name}} {{row.lastname}}
         td.text-center(ng-repeat='an in ann.positives')
           span.good(ng-bind='row.totals[an].length')
+          span(ng-show='!row.totals[an].length') ·
         td.text-center(ng-repeat='an in ann.negatives')
           strong.bad(ng-bind='row.totals[an].length')
+          span(ng-show='!row.totals[an].length') ·
         td
         td
           a.circle-g( ng-repeat='anplus in ann.positives',
