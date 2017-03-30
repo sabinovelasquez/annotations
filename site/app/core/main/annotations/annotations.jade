@@ -14,10 +14,13 @@
     p.text-center
       a.btn(ng-click='ann.currentService.edit=!ann.currentService.edit;',
             ng-class='{"btn-danger": !ann.currentService.edit, "btn-success": ann.currentService.edit}')
-        i.fa(ng-class='{"fa-calendar-minus-o": !ann.currentService.edit,"fa-calendar-plus-o": ann.currentService.edit}')
+        i.fa(ng-class='{"fa-eraser": !ann.currentService.edit,"fa-edit": ann.currentService.edit}')
   .col {{ann.currentService.currentWeekNum}}
 #annotations.table-responsive
-  table.ann.table-bordered.table.table-striped(st-pipe='ann.callServer', st-table='ann.students')
+  table.ann.table-bordered.table.table-striped(
+          st-pipe='ann.callServer',
+          st-table='ann.students',
+          ng-class='{"border-red": !ann.currentService.edit}')
     thead
       tr
         th.text-center
@@ -28,10 +31,10 @@
         th.bad.text-center(colspan=6) Negative
         th.war.text-center
           i.fa.fa-exclamation-triangle
-        th.text-center.col-sm-2(ng-click='ann.changeWeeks()')
+        th.text-center.col-sm-2.pointer(ng-click='ann.changeWeeks()')
           i.fa.fa-chevron-left
         th.text-center.col-sm-4(colspan=2) Current 4 Weeks
-        th.text-center.col-sm-2(ng-click='ann.changeWeeks("add")')
+        th.text-center.col-sm-2.pointer(ng-click='ann.changeWeeks("add")')
           i.fa.fa-chevron-right
       tr
         th(st-sort='number', st-sort-default='true')

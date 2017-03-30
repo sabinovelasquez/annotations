@@ -16,6 +16,7 @@ export default ngModule => {
           this.newStudent = () => {
             this.student.course = this.course.id;
             fbAPIService.newStudent(this.student);
+            this.close();
           };
         },
       });

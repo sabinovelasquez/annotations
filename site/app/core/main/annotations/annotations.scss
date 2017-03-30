@@ -14,14 +14,27 @@
   }
   table.ann{
     font-size: .8em;
+    &.border-red{
+      td{
+       //  background: lighten($blue, 50);
+        a{
+          cursor: default;
+          opacity: .2;
+          &.has{
+            cursor: pointer;
+            opacity: 1;
+          }
+        }
+      }
+    }
     input{
       font-size: 1em;
       font-weight: 400;
     }
     th.actual{
+      font-weight: 300;
       color: white;
       background: $blue;
-      font-weight: 300;
     }
     td.nopad{
       padding: 0;

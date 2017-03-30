@@ -8,8 +8,9 @@ export default ngModule => {
         controllerAs: 'modalClass',
         controller: function newClassModalCtrl($uibModalInstance) {
           this.close = () => $uibModalInstance.dismiss();
-          this.newClass = () => {
-            fbAPIService.newClass(this.classId);
+          this.newClass = (string) => {
+            fbAPIService.newClass({id: string.toUpperCase()});
+            this.close();
           };
         },
       });

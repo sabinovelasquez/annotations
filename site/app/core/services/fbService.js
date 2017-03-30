@@ -9,7 +9,7 @@ export default ngModule => {
       },
       getClasses: () => {
         const firebaseClient = new Firebase(`https://annotations-7379e.firebaseio.com/classes`);
-        const classesData = $firebaseArray(firebaseClient);
+        const classesData = $firebaseArray(firebaseClient.orderByChild('id'));
         return classesData;
       },
       newStudent: (student) => {
