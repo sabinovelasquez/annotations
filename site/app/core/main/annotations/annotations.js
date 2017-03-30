@@ -76,14 +76,10 @@ export default ngModule => {
         // this.sendWarning = (week) => {
         //   console.log(week);
         // };
-        this.weeks = __.last(calAPIService.getWeekArray('add', this.currentService.weekNum), 4);
-        this.changeWeeks = (num) => {
-          this.currentService.weekNum = this.currentService.weekNum + num;
-          if ( num > 0 ) {
-            this.weeks = __.last(calAPIService.getWeekArray('add', this.currentService.weekNum), 4);
-          }else {
-            this.weeks = __.last(calAPIService.getWeekArray('min', 1), 4);
-          }
+        this.weeks = calAPIService.getWeekArray();
+        this.actualWeek = calAPIService.actualWeek;
+        this.changeWeeks = (action) => {
+          this.weeks = calAPIService.getWeekArray(action);
           this.callServer(this.tableState);
         };
       },

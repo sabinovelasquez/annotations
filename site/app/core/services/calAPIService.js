@@ -1,23 +1,19 @@
 export default ngModule => {
   ngModule.service('calAPIService', function calAPIService() {
     const moment = require('moment');
-    this.startingDate = moment().startOf('month').weekday(1).subtract(1, 'week');
     this.yearWeeks = moment().isoWeeksInYear();
     this.currentWeekNum = moment().isoWeek();
-    this.activeWeek = moment().weekday(1).week(this.currentWeekNum);
+    this.actualWeek = moment().isoWeek(this.currentWeekNum).startOf('week').weekday(1).format('MMM DD YYYY');
 
-    console.log(this.currentWeekNum);
-    console.log(this.wiy);
-    this.getWeekArray = (action, weeks) => {
+    this.getWeekArray = (action) => {
       const arr = [];
-      if ( action === 'add' ) {
-        for (let id = 0; id < weeks; id++) {
-          arr.push(moment(this.startingDate).add(id, 'week').weekday(1));
-        }
+      if (!action) {
+        this.currentWeekNum -= 1;
       }else {
-        for (let id = 0; id < weeks; id++) {
-          arr.push(moment(this.startingDate).subtract(id, 'week').weekday(1));
-        }
+        this.currentWeekNum += 1;
+      }
+      for (let id = 0; id < 4; id++) {
+        arr.push(moment().weekday(1).isoWeek(this.currentWeekNum + id).format('MMM DD YYYY'));
       }
       return arr;
     };

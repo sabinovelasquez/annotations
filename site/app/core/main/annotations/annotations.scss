@@ -4,8 +4,8 @@
 #annotations{
   position: relative;
   width: 98%;
-  margin: 20px 1% 0;
   height: 100%;
+  margin: 20px 1% 0;
   .st-sort-ascent:before{
     content: '\25B2';
   }
@@ -17,6 +17,11 @@
     input{
       font-size: 1em;
       font-weight: 400;
+    }
+    th.actual{
+      color: white;
+      background: $blue;
+      font-weight: 300;
     }
     td.nopad{
       padding: 0;
@@ -55,32 +60,37 @@
         border-radius: 50%;
         background: lighten($dark-grey,10);
       }
-      &:hover, &.has{
+      &:hover,
+      &.has{
         text-decoration: none;
         color: white;
       }
     }
     a.circle-g{
       float: left;
-      &:hover, &.has{
+      &:hover,
+      &.has{
         background: $good;
       }
     }
     a.circle-b{
       float: left;
-      &:hover, &.has{
+      &:hover,
+      &.has{
         background: $bad;
       }
     }
     a.circle-w{
       float: right;
-      &:hover, &.has{
+      &:hover,
+      &.has{
         background: $war;
       }
     }
     a.circle-m{
       float: right;
-      &:hover, &.has{
+      &:hover,
+      &.has{
         background: $merit;
       }
     }
