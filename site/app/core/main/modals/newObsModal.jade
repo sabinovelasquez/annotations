@@ -1,0 +1,12 @@
+.modal-header
+  button.close(type='button', ng-click='modalObs.close()')
+    i.fa.fa-times
+  h4.modal-title Add Observation
+.modal-body
+  form.form-vertical(ng-submit='modalObs.newObs()')
+    .form-group
+      small.right   ({{modalObs.currentService.obs.obsWeek}})
+      label Observation for {{modalObs.student}}
+        
+      textarea.form-control(rows=4, placeholder='Enter Class Id (ex. 1A)', ng-model='modalObs.text')
+    button.btn.btn-primary Submit

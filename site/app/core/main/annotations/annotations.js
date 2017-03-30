@@ -1,6 +1,6 @@
 export default ngModule => {
   require('./annotations.scss');
-  ngModule.directive('annotations', function annotations(fbAPIService, calAPIService, currentService) {
+  ngModule.directive('annotations', function annotations(fbAPIService, calAPIService, currentService, newObsModal) {
     return {
       template: require('./annotations.jade'),
       scope: {},
@@ -73,9 +73,11 @@ export default ngModule => {
           }
           this.updateVals();
         };
-        // this.sendWarning = (week) => {
-        //   console.log(week);
-        // };
+        this.sendWarning = (name, lastname, key, week) => {
+          currentService.obs = {obsKey: key, obsType: 'OBS', obsWeek: week.toString(), student: `${name} ${lastname}`};
+          currentService.tableState = this.tableState;
+          newObsModal.open();
+        };
         this.weeks = calAPIService.getWeekArray();
         this.actualWeek = calAPIService.actualWeek;
         this.changeWeeks = (action) => {
