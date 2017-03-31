@@ -7,7 +7,11 @@ export default ngModule => {
         size: 'md',
         controllerAs: 'modalObs',
         controller: function newObsModalCtrl($uibModalInstance) {
+          const __ = require('underscore');
           this.currentService = currentService;
+          fbAPIService.getObs(this.currentService.obs.obsKey).$loaded().then( (data) => {
+            this.observations = __.where(data, {type: 'OBS', when: this.currentService.obs.obsWeek});
+          });
           this.student = this.currentService.obs.student;
           this.close = () => $uibModalInstance.dismiss();
           this.newObs = () => {

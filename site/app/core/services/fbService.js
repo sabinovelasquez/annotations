@@ -12,6 +12,11 @@ export default ngModule => {
         const classesData = $firebaseArray(firebaseClient.orderByChild('id'));
         return classesData;
       },
+      getObs: (key) => {
+        const firebaseClient = new Firebase(`https://annotations-7379e.firebaseio.com/students/${key}/annotations`);
+        const obsData = $firebaseArray(firebaseClient.orderByChild('id'));
+        return obsData;
+      },
       newStudent: (student) => {
         const ref = new Firebase(`https://annotations-7379e.firebaseio.com/students`);
         ref.push(student, (resp) => {

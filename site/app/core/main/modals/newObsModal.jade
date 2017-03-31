@@ -1,9 +1,13 @@
 .modal-header
   button.close(type='button', ng-click='modalObs.close()')
     i.fa.fa-times
-  h4.modal-title Add Observation
+  h4.modal-title(ng-show='modalObs.observations.length==0') Add Observation
+  h4.modal-title(ng-show='modalObs.observations.length>0')
+    {{modalObs.student}}
+    small   ({{modalObs.currentService.obs.obsWeek}})
 .modal-body
-  form.form-vertical(ng-submit='modalObs.newObs()')
+  pre(ng-repeat='obs in modalObs.observations', ng-show='modalObs.observations.length>0', ng-bind-html='obs.text')
+  form.form-vertical(ng-submit='modalObs.newObs()', ng-show='modalObs.observations.length==0')
     .form-group
       small.right   ({{modalObs.currentService.obs.obsWeek}})
       label Observation for {{modalObs.student}}
