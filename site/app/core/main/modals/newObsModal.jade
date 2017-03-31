@@ -5,12 +5,16 @@
   h4.modal-title(ng-show='modalObs.observations.length>0')
     {{modalObs.student}}
     small   ({{modalObs.currentService.obs.obsWeek}})
-.modal-body
-  pre(ng-repeat='obs in modalObs.observations', ng-show='modalObs.observations.length>0', ng-bind-html='obs.text')
-  form.form-vertical(ng-submit='modalObs.newObs()', ng-show='modalObs.observations.length==0')
+.modal-body.obs
+  .history(ng-repeat='obs in modalObs.observations')
+    pre(ng-bind-html='obs.text')
+    .actions
+      small {{obs.when}}
+  hr
+  form.form-vertical(ng-submit='modalObs.newObs()')
     .form-group
       small.right   ({{modalObs.currentService.obs.obsWeek}})
-      label Observation for {{modalObs.student}}
-        
+      label New Observation for {{modalObs.student}}
+
       textarea.form-control(rows=4, placeholder='Enter Class Id (ex. 1A)', ng-model='modalObs.text')
     button.btn.btn-primary Submit

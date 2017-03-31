@@ -16,7 +16,7 @@
     font-size: .8em;
     &.border-red{
       td{
-       //  background: lighten($blue, 50);
+        //  background: lighten($blue, 50);
         a{
           cursor: default;
           opacity: .2;
@@ -57,9 +57,7 @@
       margin: 0 2px;
       cursor: pointer;
       text-align: center;
-      color: $dark-grey;
       border-radius: 50%;
-      background: lighten($dark-grey,60);
       span{
         line-height: 12px;
         position: absolute;
@@ -81,6 +79,8 @@
     }
     a.circle-g{
       float: left;
+      color: $dark-grey;
+      background: lighten($good,50);
       &:hover,
       &.has{
         background: $good;
@@ -88,6 +88,8 @@
     }
     a.circle-b{
       float: left;
+      color: $dark-grey;
+      background: lighten($bad,45);
       &:hover,
       &.has{
         background: $bad;
@@ -95,6 +97,8 @@
     }
     a.circle-w{
       float: right;
+      color: $dark-grey;
+      background: lighten($war,30);
       &:hover,
       &.has{
         background: $war;

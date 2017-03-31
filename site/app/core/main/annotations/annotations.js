@@ -76,14 +76,7 @@ export default ngModule => {
         this.sendWarning = (name, lastname, key, week) => {
           currentService.obs = {obsKey: key, obsType: 'OBS', obsWeek: week.toString(), student: `${name} ${lastname}`};
           currentService.tableState = this.tableState;
-          if ( this.currentService.edit ) {
-            newObsModal.open();
-          }else {
-            const arrToFind = __.filter(this.students, {$id: key});
-            const keyToDel = __.findKey(arrToFind[0].annotations, {when: week, type: 'OBS'});
-            fbAPIService.delAnn(key, keyToDel);
-          }
-          this.updateVals();
+          newObsModal.open();
         };
         this.weeks = calAPIService.getWeekArray();
         this.actualWeek = calAPIService.actualWeek;

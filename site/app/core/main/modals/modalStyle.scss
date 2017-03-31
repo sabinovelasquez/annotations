@@ -1,0 +1,27 @@
+@import '../../css/functions';
+@import '../../css/colors';
+
+.modal-body{
+  &.obs{
+    .history{
+      float: left;
+      width: 100%;
+    }
+    pre{
+      margin: 0;
+    }
+    .actions{
+      float: right;
+      font-size: .9em;
+      margin-right: 5px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-top: none;
+      background: whitesmoke;
+    }
+    hr{
+      float: left;
+      width: 100%;
+    }
+  }
+}

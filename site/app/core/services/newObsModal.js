@@ -1,5 +1,6 @@
 export default ngModule => {
   ngModule.factory('newObsModal', ($uibModal, fbAPIService, currentService) => {
+    require('../main/modals/modalStyle.scss');
     const open = () => {
       $uibModal.open({
         animation: true,
