@@ -6,11 +6,13 @@
     {{modalObs.student}}
     small   ({{modalObs.currentService.obs.obsWeek}})
 .modal-body.obs
-  .history(ng-repeat='obs in modalObs.observations')
-    pre(ng-bind-html='obs.text')
-    .actions
-      small {{obs.when}}
-  hr
+  .scrolled
+    .history(ng-repeat='obs in modalObs.observations')
+      pre(ng-bind-html='obs.text', ng-class='{"col-xs-10":!modalObs.currentService.edit}')
+      .col-xs-2(ng-show='!modalObs.currentService.edit')
+        a.btn.btn-default(ng-submit='modalObs.delObs()')
+          i.fa.fa-trash
+      hr
   form.form-vertical(ng-submit='modalObs.newObs()')
     .form-group
       small.right   ({{modalObs.currentService.obs.obsWeek}})

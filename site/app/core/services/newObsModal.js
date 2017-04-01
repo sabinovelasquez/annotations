@@ -20,9 +20,10 @@ export default ngModule => {
             annotation.when = this.currentService.obs.obsWeek;
             annotation.type = this.currentService.obs.obsType;
             annotation.text = this.text;
-            fbAPIService.addAnn(this.currentService.obs.obsKey, annotation);
+            fbAPIService.delAnn(this.currentService.obs.obsKey, annotation);
             this.close();
           };
+          // this.delObs;
         },
       });
     };
