@@ -1,29 +1,124 @@
-.annotations
-  .head
-    .week(ng-repeat='week in ann.weeks') {{week}}
-  .class
-    .ann(ng-show='!ann.students')
-      .col-xs-12.text-center(style='line-height:60px;')
-        i.fa.fa-spinner.fa-pulse
-    .column(ng-repeat='week in [1, 2, 3, 4]')
-      .ann(ng-repeat='ann in ann.students')
-        .block
-          a.action(ng-click='som')
-            | CD
-          a.action(ng-click='som')
-            | R
-          a.action(ng-click='som')
-            | CV
-          a.action(ng-click='som')
-          a.action(ng-click='som')
-            i.fa.fa-warning
-          a.action(ng-click='som')
-            | R
-          a.action(ng-click='som')
-            | D
-          a.action(ng-click='som')
-            | AF
-          a.action(ng-click='som')
-            | AV
-          a.action(ng-click='som')
-            | O
+.container-fluid
+  .col
+    h2 Select Class:
+  .col
+    .btn-group(uib-dropdown='')
+      button.btn.btn-default(type='button', uib-dropdown-toggle='')
+        i.fa.fa-book
+        |   {{ann.currentService.classId}}  
+        span.caret
+      ul.dropdown-menu(uib-dropdown-menu='', role='menu')
+        li(role='menuitem', ng-repeat='classId in ann.classes')
+          a(ng-click='ann.changeClass(classId.id)') {{classId.id}}
+  .col
+    p.text-center
+      a.btn(ng-click='ann.currentService.edit=!ann.currentService.edit;',
+            ng-class='{"btn-danger": !ann.currentService.edit, "btn-success": ann.currentService.edit}')
+        i.fa(ng-class='{"fa-eraser": !ann.currentService.edit,"fa-edit": ann.currentService.edit}')
+  .col {{ann.currentService.currentWeekNum}}
+#annotations.table-responsive
+  table.ann.table-bordered.table.table-striped(
+          st-pipe='ann.callServer',
+          st-table='ann.students',
+          ng-class='{"border-red": !ann.currentService.edit}')
+    thead
+      tr
+        th.text-center
+          i.fa.fa-search
+        th
+          input.input-sm.form-control(st-search='lastname', placeholder='search for Last Name', type='search')
+        th.good.text-center(colspan=3) Positive
+        th.bad.text-center(colspan=6) Negative
+        th.war.text-center
+          i.fa.fa-exclamation-triangle
+        th.text-center.col-sm-2.pointer(ng-click='ann.changeWeeks()')
+          i.fa.fa-chevron-left
+        th.text-center.col-sm-4(colspan=2) Current 4 Weeks
+        th.text-center.col-sm-2.pointer(ng-click='ann.changeWeeks("add")')
+          i.fa.fa-chevron-right
+      tr
+        th(st-sort='number', st-sort-default='true')
+          i.fa.fa-sort-amount-desc
+        th(st-sort='lastname') Name
+        th(ng-repeat='anplus in ann.positives', st-sort='{{anplus}}') {{anplus}}
+        th(ng-repeat='anneg in ann.negatives', st-sort='{{anneg}}') {{anneg}}
+        th
+        th(ng-repeat='week in ann.weeks', ng-class='{"actual":ann.actualWeek===week}')
+          i.fa.fa-calendar
+          span   {{week}}
+    tbody(ng-show='!ann.isLoading')
+      tr(ng-repeat='row in ann.students')
+        td {{row.number}}
+        td {{row.name}} {{row.lastname}}
+        td.text-center(ng-repeat='an in ann.positives')
+          span.good(ng-bind='row.totals[an].length')
+          span(ng-show='!row.totals[an].length') ·
+        td.text-center(ng-repeat='an in ann.negatives')
+          strong.bad(ng-bind='row.totals[an].length')
+          span(ng-show='!row.totals[an].length') ·
+        td.text-center ·
+        td
+          a.circle-g( ng-repeat='anplus in ann.positives',
+                      ng-bind-html='ann.hasAnn(row.annotations, anplus, ann.weeks[0]).html',
+                      ng-click='ann.sendAnn(row.$id, anplus, ann.weeks[0])'
+                      ng-class='{"has": ann.hasAnn(row.annotations, anplus, ann.weeks[0]).num > 0}')
+          hr
+          a.circle-w(ng-click='ann.sendWarning(row.name, row.lastname, row.$id, ann.weeks[0])',
+                    ng-class='{"has": ann.hasAnn(row.annotations, "OBS", ann.weeks[0]).num > 0}')
+            i.fa.fa-exclamation-triangle
+          a.circle-b( ng-repeat='anneg in ann.negatives',
+                      ng-bind-html='ann.hasAnn(row.annotations, anneg, ann.weeks[0]).html',
+                      ng-click='ann.sendAnn(row.$id, anneg, ann.weeks[0])'
+                      ng-class='{"has": ann.hasAnn(row.annotations, anneg, ann.weeks[0]).num > 0}')
+        td
+          //- a.circle-w(ng-click='ann.sendWarning(row.name, row.lastname, ann.weeks[0])')
+            //- i.fa.fa-trophy
+          a.circle-g( ng-repeat='anplus in ann.positives',
+                      ng-bind-html='ann.hasAnn(row.annotations, anplus, ann.weeks[1]).html',
+                      ng-click='ann.sendAnn(row.$id, anplus, ann.weeks[1])'
+                      ng-class='{"has": ann.hasAnn(row.annotations, anplus, ann.weeks[1]).num > 0}')
+          hr
+          a.circle-w(ng-click='ann.sendWarning(row.name, row.lastname, row.$id, ann.weeks[1])',
+                    ng-class='{"has": ann.hasAnn(row.annotations, "OBS", ann.weeks[1]).num > 0}')
+            i.fa.fa-exclamation-triangle
+          a.circle-b( ng-repeat='anneg in ann.negatives',
+                      ng-bind-html='ann.hasAnn(row.annotations, anneg, ann.weeks[1]).html',
+                      ng-click='ann.sendAnn(row.$id, anneg, ann.weeks[1])'
+                      ng-class='{"has": ann.hasAnn(row.annotations, anneg, ann.weeks[1]).num > 0}')
+        td
+          //- a.circle-w(ng-click='ann.sendWarning(row.name, row.lastname, ann.weeks[0])')
+            //- i.fa.fa-trophy
+          a.circle-g( ng-repeat='anplus in ann.positives',
+                      ng-bind-html='ann.hasAnn(row.annotations, anplus, ann.weeks[2]).html',
+                      ng-click='ann.sendAnn(row.$id, anplus, ann.weeks[2])'
+                      ng-class='{"has": ann.hasAnn(row.annotations, anplus, ann.weeks[2]).num > 0}')
+          hr
+          a.circle-w(ng-click='ann.sendWarning(row.name, row.lastname, row.$id, ann.weeks[2])',
+                    ng-class='{"has": ann.hasAnn(row.annotations, "OBS", ann.weeks[2]).num > 0}')
+            i.fa.fa-exclamation-triangle
+          a.circle-b( ng-repeat='anneg in ann.negatives',
+                      ng-bind-html='ann.hasAnn(row.annotations, anneg, ann.weeks[2]).html',
+                      ng-click='ann.sendAnn(row.$id, anneg, ann.weeks[2])'
+                      ng-class='{"has": ann.hasAnn(row.annotations, anneg, ann.weeks[2]).num > 0}')
+        td
+          //- a.circle-w(ng-click='ann.sendWarning(row.name, row.lastname, ann.weeks[0])')
+            //- i.fa.fa-trophy
+          a.circle-g( ng-repeat='anplus in ann.positives',
+                      ng-bind-html='ann.hasAnn(row.annotations, anplus, ann.weeks[3]).html',
+                      ng-click='ann.sendAnn(row.$id, anplus, ann.weeks[3])'
+                      ng-class='{"has": ann.hasAnn(row.annotations, anplus, ann.weeks[3]).num > 0}')
+          hr
+          a.circle-w(ng-click='ann.sendWarning(row.name, row.lastname, row.$id, ann.weeks[3])',
+                    ng-class='{"has": ann.hasAnn(row.annotations, "OBS", ann.weeks[3]).num > 0}')
+            i.fa.fa-exclamation-triangle
+          a.circle-b( ng-repeat='anneg in ann.negatives',
+                      ng-bind-html='ann.hasAnn(row.annotations, anneg, ann.weeks[3]).html',
+                      ng-click='ann.sendAnn(row.$id, anneg, ann.weeks[3])'
+                      ng-class='{"has": ann.hasAnn(row.annotations, anneg, ann.weeks[3]).num > 0}')
+    tbody(ng-show='ann.isLoading')
+      tr
+        td.text-center(colspan=17)
+          .i.fa.fa-spinner.fa-pulse
+    tbody(ng-show='!ann.isLoading && ann.students.length === 0')
+      tr
+        td.text-center(colspan=17) No matches found. Type the exact name considering uppercases.

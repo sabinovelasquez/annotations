@@ -1,0 +1,13 @@
+.modal-header
+  button.close(type='button', ng-click='modalClass.close()')
+    i.fa.fa-times
+  h4.modal-title Add Class
+.modal-body
+  form.form-vertical(ng-submit='modalClass.newClass(modalClass.classId.id)')
+    .form-group
+      label Class Id
+      .input-group
+        .input-group-addon
+          i.fa.fa-book
+        input.form-control(type='text', placeholder='Enter Class Id (ex. 1A)', ng-model='modalClass.classId.id')
+    button.btn.btn-primary Submit

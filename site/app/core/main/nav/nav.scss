@@ -2,15 +2,16 @@
 @import '../../css/colors';
 
 nav.navbar{
+  margin-bottom: 30px;
   color: white;
   border-color: darken($blue, 10);
-  background: $blue;
-  margin-bottom: 0;
   border-radius: 0;
+  background: $blue;
 }
 .navbar-default .navbar-nav > li > a{
-  color: white;
   font-weight: 300;
+  cursor: pointer;
+  color: white;
   i{
     font-size: 20px;
   }

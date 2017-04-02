@@ -1,15 +1,22 @@
 export default ngModule => {
   ngModule.service('calAPIService', function calAPIService() {
     const moment = require('moment');
-    this.firstWeek = moment().startOf('month').weekday(1).format('MMMM DD YYYY');
-    this.secondWeek = moment(this.firstWeek).add(1, 'week').weekday(1).format('MMMM DD YYYY');
-    this.thirdWeek = moment(this.secondWeek).add(1, 'week').weekday(1).format('MMMM DD YYYY');
-    this.forthWeek = moment(this.thirdWeek).add(1, 'week').weekday(1).format('MMMM DD YYYY');
-    // this.getNumWeeks = (year,month) => {
-    //   date = new Date(year,month-1,1);
-    //   day = date.getDay();
-    //   numDaysInMonth = new Date(year, month, 0).getDate();
-    //   return Math.ceil((numDaysInMonth + day) / 7);
-    // };
+    this.yearWeeks = moment().isoWeeksInYear();
+    this.currentWeekNum = moment().isoWeek();
+    this.actualWeek = moment().isoWeek(this.currentWeekNum).startOf('week').weekday(1).format('MMM DD YYYY');
+
+    this.getWeekArray = (action) => {
+      const arr = [];
+      if (!action) {
+        this.currentWeekNum -= 1;
+      }else {
+        this.currentWeekNum += 1;
+      }
+      for (let id = 0; id < 4; id++) {
+        arr.push(moment().weekday(1).isoWeek(this.currentWeekNum + id).format('MMM DD YYYY'));
+      }
+      return arr;
+    };
+    // .format('MMMM DD')
   });
 };
