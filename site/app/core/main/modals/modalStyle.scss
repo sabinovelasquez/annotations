@@ -1,0 +1,30 @@
+@import '../../css/functions';
+@import '../../css/colors';
+
+.modal-body{
+  &.obs{
+    .scrolled{
+      max-height: 350px;
+      .history{
+        float: left;
+        width: 100%;
+      }
+      pre{
+        margin: 0;
+      }
+      .actions{
+        font-size: .9em;
+        float: right;
+        margin-right: 5px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-top: none;
+        background: whitesmoke;
+      }
+      hr{
+        float: left;
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.modal-header
+  button.close(type='button', ng-click='modalObs.close()')
+    i.fa.fa-times
+  h4.modal-title(ng-show='modalObs.observations.length==0') Add Observation
+  h4.modal-title(ng-show='modalObs.observations.length>0')
+    {{modalObs.student}}
+    small   ({{modalObs.currentService.obs.obsWeek}})
+.modal-body.obs
+  .scrolled
+    .history(ng-repeat='obs in modalObs.observations')
+      pre(ng-bind-html='obs.text', ng-class='{"col-xs-10":!modalObs.currentService.edit}')
+      .col-xs-2(ng-show='!modalObs.currentService.edit')
+        a.btn.btn-default(ng-submit='modalObs.delObs()')
+          i.fa.fa-trash
+      hr
+  form.form-vertical(ng-submit='modalObs.newObs()')
+    .form-group
+      small.right   ({{modalObs.currentService.obs.obsWeek}})
+      label New Observation for {{modalObs.student}}
+
+      textarea.form-control(rows=4, placeholder='Enter Class Id (ex. 1A)', ng-model='modalObs.text')
+    button.btn.btn-primary Submit

@@ -1,4 +1,4 @@
-nav.navbar.navbar-default.navbar-fixed-top
+nav.navbar.navbar-default
   .container-fluid
     .navbar-header
       button.mob-menu.navbar-toggle.collapsed(type='button', ng-click='navCollapsed=!navCollapsed')
@@ -12,6 +12,10 @@ nav.navbar.navbar-default.navbar-fixed-top
           a(du-smooth-scroll, duration='800', href='#example')
             i.fa.fa-home
         li
-          a
-            i.fa.fa-book   
-            |   Anotaciones
+          a(ng-click='nav.openClassModal()')
+            i.fa.fa-book
+            |   Add Class
+        li
+          a(ng-click='nav.openUserModal()')
+            i.fa.fa-user-plus
+            |   Add Student

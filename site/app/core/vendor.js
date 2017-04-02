@@ -8,6 +8,7 @@ module.exports = () => {
   require('angular-animate');
   require('angular-module-resource');
   require('angular-sanitize');
+  require('angular-smart-table');
   require('angular-scroll');
   require('angular-ui-router');
   require('angular-ui-bootstrap');
