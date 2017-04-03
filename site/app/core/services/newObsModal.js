@@ -10,9 +10,11 @@ export default ngModule => {
         controller: function newObsModalCtrl($uibModalInstance) {
           const __ = require('underscore');
           this.currentService = currentService;
-          fbAPIService.getObs(this.currentService.obs.obsKey).$loaded().then( (data) => {
-            this.observations = __.where(data, {type: 'OBS', when: this.currentService.obs.obsWeek});
-          });
+          this.getObs = () => {
+            fbAPIService.getObs(this.currentService.obs.obsKey).$loaded().then( (data) => {
+              this.observations = __.where(data, {type: 'OBS', when: this.currentService.obs.obsWeek});
+            });
+          };
           this.student = this.currentService.obs.student;
           this.close = () => $uibModalInstance.dismiss();
           this.newObs = () => {
@@ -20,10 +22,14 @@ export default ngModule => {
             annotation.when = this.currentService.obs.obsWeek;
             annotation.type = this.currentService.obs.obsType;
             annotation.text = this.text;
-            fbAPIService.delAnn(this.currentService.obs.obsKey, annotation);
+            fbAPIService.addAnn(this.currentService.obs.obsKey, annotation);
             this.close();
           };
-          // this.delObs;
+          this.delObs = (obs) => {
+            fbAPIService.delAnn(this.currentService.obs.obsKey, obs.$id);
+            this.getObs();
+          };
+          this.getObs();
         },
       });
     };
