@@ -10,7 +10,7 @@
     .history(ng-repeat='obs in modalObs.observations')
       pre(ng-bind-html='obs.text', ng-class='{"col-xs-10":!modalObs.currentService.edit}')
       .col-xs-2(ng-show='!modalObs.currentService.edit')
-        a.btn.btn-default(ng-submit='modalObs.delObs()')
+        a.btn.btn-default(ng-click='modalObs.delObs(obs)')
           i.fa.fa-trash
       hr
   form.form-vertical(ng-submit='modalObs.newObs()')
