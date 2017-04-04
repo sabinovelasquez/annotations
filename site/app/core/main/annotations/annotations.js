@@ -21,8 +21,8 @@ export default ngModule => {
           'D',
         ];
         this.currentService = currentService;
-        fbAPIService.getClasses().$loaded().then( (data) => {
-          this.classes = data;
+        fbAPIService.getClasses().on('value', (data) => {
+          this.classes = data.val();
         });
         this.changeClass = (classId) => {
           this.currentService.classId = classId;
@@ -45,11 +45,17 @@ export default ngModule => {
             this.students[num].totals = total;
           });
         };
+
         this.callServer = (tableState) => {
           this.isLoading = true;
-          fbAPIService.getClass(currentService.classId).$loaded().then( (data) => {
+          fbAPIService.getClass(currentService.classId).once('value').then( (data) => {
+            const arr = [];
+            data.forEach( (child) => {
+              arr.push({key: child.key, name: child.val().name, lastname: child.val().lastname, num: child.val().number, course: child.val().course});
+            });
+            console.log(arr);
             this.tableState = tableState;
-            this.students = __.sortBy(data, tableState.sort.predicate);
+            this.students = __.sortBy(arr, tableState.sort.predicate);
             if ( tableState.sort.reverse ) {
               this.students.reverse();
             }
@@ -60,6 +66,7 @@ export default ngModule => {
             this.updateVals();
           });
         };
+
         this.sendAnn = (key, type, week) => {
           const annotation = {};
           annotation.when = week.toString();

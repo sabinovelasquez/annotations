@@ -1,49 +1,48 @@
 export default ngModule => {
   ngModule.service('fbAPIService', ($firebaseArray, $firebaseObject, $window) => {
-    const Firebase = require('firebase');
+    const firebase = require('firebase');
+    const config = {
+      apiKey: 'AIzaSyDQc3kaIXEDjuzJf2KTA_zOTY8gL7mZw88',
+      authDomain: 'annotations-7379e.firebaseapp.com',
+      databaseURL: 'https://annotations-7379e.firebaseio.com',
+      projectId: 'annotations-7379e',
+      storageBucket: 'annotations-7379e.appspot.com',
+      messagingSenderId: '390559537611',
+    };
+    firebase.initializeApp(config);
     const service = {
       getClass: (classId) => {
-        const firebaseClient = new Firebase(`https://annotations-7379e.firebaseio.com/students`);
-        const classData = $firebaseArray(firebaseClient.orderByChild('course').equalTo(`${classId}`));
-        return classData;
+        return firebase.database().ref('students').orderByChild('course').equalTo(`${classId}`);
       },
       getClasses: () => {
-        const firebaseClient = new Firebase(`https://annotations-7379e.firebaseio.com/classes`);
-        const classesData = $firebaseArray(firebaseClient.orderByChild('id'));
-        return classesData;
+        return firebase.database().ref('classes').orderByChild('id');
       },
       getObs: (key) => {
-        const firebaseClient = new Firebase(`https://annotations-7379e.firebaseio.com/students/${key}/annotations`);
-        const obsData = $firebaseArray(firebaseClient.orderByChild('id'));
-        return obsData;
+        return firebase.database().ref(`students/${key}/annotations`).orderByChild('id');
       },
       newStudent: (student) => {
-        const ref = new Firebase(`https://annotations-7379e.firebaseio.com/students`);
-        ref.push(student, (resp) => {
+        firebase.database().ref('students').push(student, (resp) => {
           if ( resp ) {
             $window.alert(resp.code);
           }
         });
       },
       newClass: (classId) => {
-        const ref = new Firebase(`https://annotations-7379e.firebaseio.com/classes`);
-        ref.push(classId, (resp) => {
+        firebase.database().ref('classes').push(classId, (resp) => {
           if ( resp ) {
             $window.alert(resp.code);
           }
         });
       },
       addAnn: (key, ann) => {
-        const ref = new Firebase(`https://annotations-7379e.firebaseio.com/students/${key}/annotations`);
-        ref.push(ann, (resp) => {
+        firebase.database().ref(`students/${key}/annotations`).push(ann, (resp) => {
           if ( resp ) {
             $window.alert(resp.code);
           }
         });
       },
       delAnn: (key, id) => {
-        const ref = new Firebase(`https://annotations-7379e.firebaseio.com/students/${key}/annotations/${id}`);
-        ref.remove().then((resp) => {
+        firebase.database().ref(`students/${key}/annotations/${id}`).remove().then((resp) => {
           if ( resp ) {
             $window.alert(resp.code);
           }
