@@ -14,6 +14,10 @@
   }
   table.ann{
     font-size: .8em;
+    thead{
+      z-index: 99;
+      background: white;
+    }
     &.border-red{
       td{
         //  background: lighten($blue, 50);

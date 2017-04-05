@@ -20,7 +20,8 @@
   table.ann.table-bordered.table.table-striped(
           st-pipe='ann.callServer',
           st-table='ann.students',
-          ng-class='{"border-red": !ann.currentService.edit}')
+          ng-class='{"border-red": !ann.currentService.edit}',
+          st-sticky-header)
     thead
       tr
         th.text-center
