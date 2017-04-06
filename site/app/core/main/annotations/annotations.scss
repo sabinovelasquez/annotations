@@ -1,22 +1,45 @@
 @import '../../css/functions';
 @import '../../css/colors';
-
+#sticky{
+    margin-top: 0;
+      line-height: 50px;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      right: 0;
+      padding: 0 10px;
+      height: 53px;
+      background: white;
+      h2{
+        line-height: 53px;
+      }
+  }
 #annotations{
   position: relative;
   width: 98%;
   height: 100%;
-  margin: 20px 1% 0;
+  margin: 80px 1% 0;
+
   .st-sort-ascent:before{
     content: '\25B2';
   }
   .st-sort-descent:before{
     content: '\25BC';
   }
+  .table-striped > tbody > tr:nth-of-type(odd){
+    background: white;
+  }
+  .table-striped > tbody > tr{
+    background: lighten($blue,50);
+  }
   table.ann{
     font-size: .8em;
     thead{
       z-index: 99;
       background: white;
+      &.lr-sticky-header{
+        top: 53px!important;
+      }
     }
     &.border-red{
       td{
