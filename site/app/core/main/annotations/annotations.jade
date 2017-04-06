@@ -1,4 +1,4 @@
-.container-fluid
+#sticky(href='#sticky', du-scrollspy)
   .col
     h2 Select Class:
   .col
@@ -24,41 +24,41 @@
           st-sticky-header)
     thead
       tr
-        th.text-center
+        th.text-center(st-ratio='2')
           i.fa.fa-search
-        th
+        th(st-ratio='2')
           input.input-sm.form-control(st-search='lastname', placeholder='search for Last Name', type='search')
-        th.good.text-center(colspan=3) Positive
-        th.bad.text-center(colspan=6) Negative
-        th.war.text-center
+        th.good.text-center(colspan=3, st-ratio='6') Positive
+        th.bad.text-center(colspan=6, st-ratio='12') Negative
+        th.war.text-center(st-ratio='2')
           i.fa.fa-exclamation-triangle
-        th.text-center.col-sm-2.pointer(ng-click='ann.changeWeeks()')
+        th.text-center.pointer(ng-click='ann.changeWeeks()', st-ratio='2')
           i.fa.fa-chevron-left
-        th.text-center.col-sm-4(colspan=2) Current 4 Weeks
-        th.text-center.col-sm-2.pointer(ng-click='ann.changeWeeks("add")')
+        th.text-center(colspan=2, st-ratio='4') Current 4 Weeks
+        th.text-center.pointer(ng-click='ann.changeWeeks("add")', st-ratio='2')
           i.fa.fa-chevron-right
       tr
-        th(st-sort='number', st-sort-default='true')
+        th(st-sort='number', st-sort-default='true', st-ratio='2')
           i.fa.fa-sort-amount-desc
-        th(st-sort='lastname') Name
-        th(ng-repeat='anplus in ann.positives', st-sort='{{anplus}}') {{anplus}}
-        th(ng-repeat='anneg in ann.negatives', st-sort='{{anneg}}') {{anneg}}
-        th
-        th(ng-repeat='week in ann.weeks', ng-class='{"actual":ann.actualWeek===week}')
+        th(st-sort='lastname', st-ratio='2') Name
+        th(ng-repeat='anplus in ann.positives', st-sort='{{anplus}}', st-ratio='2') {{anplus}}
+        th(ng-repeat='anneg in ann.negatives', st-sort='{{anneg}}', st-ratio='2') {{anneg}}
+        th(st-ratio='2')
+        th(ng-repeat='week in ann.weeks', ng-class='{"actual":ann.actualWeek===week}', st-ratio='2')
           i.fa.fa-calendar
           span   {{week}}
     tbody(ng-show='!ann.isLoading')
       tr(ng-repeat='row in ann.students')
-        td {{row.number}}
-        td {{row.name}} {{row.lastname}}
-        td.text-center(ng-repeat='an in ann.positives')
+        td(st-ratio='2') {{row.number}}
+        td(st-ratio='2') {{row.name}} {{row.lastname}}
+        td.text-center(ng-repeat='an in ann.positives', st-ratio='2')
           span.good(ng-bind='row.totals[an].length')
           span(ng-show='!row.totals[an].length') ·
-        td.text-center(ng-repeat='an in ann.negatives')
+        td.text-center(ng-repeat='an in ann.negatives', st-ratio='2')
           strong.bad(ng-bind='row.totals[an].length')
           span(ng-show='!row.totals[an].length') ·
-        td.text-center ·
-        td
+        td.text-center(st-ratio='2') ·
+        td(st-ratio='2')
           a.circle-g( ng-repeat='anplus in ann.positives',
                       ng-bind-html='ann.hasAnn(row.annotations, anplus, ann.weeks[0]).html',
                       ng-click='ann.sendAnn(row.$id, anplus, ann.weeks[0])'
@@ -71,7 +71,7 @@
                       ng-bind-html='ann.hasAnn(row.annotations, anneg, ann.weeks[0]).html',
                       ng-click='ann.sendAnn(row.$id, anneg, ann.weeks[0])'
                       ng-class='{"has": ann.hasAnn(row.annotations, anneg, ann.weeks[0]).num > 0}')
-        td
+        td(st-ratio='2')
           //- a.circle-w(ng-click='ann.sendWarning(row.name, row.lastname, ann.weeks[0])')
             //- i.fa.fa-trophy
           a.circle-g( ng-repeat='anplus in ann.positives',
@@ -86,7 +86,7 @@
                       ng-bind-html='ann.hasAnn(row.annotations, anneg, ann.weeks[1]).html',
                       ng-click='ann.sendAnn(row.$id, anneg, ann.weeks[1])'
                       ng-class='{"has": ann.hasAnn(row.annotations, anneg, ann.weeks[1]).num > 0}')
-        td
+        td(st-ratio='2')
           //- a.circle-w(ng-click='ann.sendWarning(row.name, row.lastname, ann.weeks[0])')
             //- i.fa.fa-trophy
           a.circle-g( ng-repeat='anplus in ann.positives',
@@ -101,7 +101,7 @@
                       ng-bind-html='ann.hasAnn(row.annotations, anneg, ann.weeks[2]).html',
                       ng-click='ann.sendAnn(row.$id, anneg, ann.weeks[2])'
                       ng-class='{"has": ann.hasAnn(row.annotations, anneg, ann.weeks[2]).num > 0}')
-        td
+        td(st-ratio='2')
           //- a.circle-w(ng-click='ann.sendWarning(row.name, row.lastname, ann.weeks[0])')
             //- i.fa.fa-trophy
           a.circle-g( ng-repeat='anplus in ann.positives',
