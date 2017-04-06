@@ -20,13 +20,21 @@ export default ngModule => {
           'O',
           'D',
         ];
+        this.students = {};
         this.currentService = currentService;
         fbAPIService.getClasses().on('value', (data) => {
           this.classes = data.val();
         });
+        fbAPIService.getClass(currentService.classId).on('value', (data) => {
+          const arr = [];
+          data.forEach( (child) => {
+            arr.push({key: child.key, name: child.val().name, lastname: child.val().lastname, num: child.val().number, course: child.val().course});
+          });
+          this.students.data = arr;
+          this.isLoading = false;
+        });
         this.changeClass = (classId) => {
           this.currentService.classId = classId;
-          this.callServer(this.tableState);
         };
         this.hasAnn = (arr, type, week) => {
           const res = __.where(arr, {when: week.toString(), type: type});
@@ -44,46 +52,6 @@ export default ngModule => {
             const total = __.groupBy(val.annotations, 'type');
             this.students[num].totals = total;
           });
-        };
-
-        this.callServer = (tableState) => {
-          this.isLoading = true;
-          fbAPIService.getClass(currentService.classId).once('value').then( (data) => {
-            const arr = [];
-            data.forEach( (child) => {
-              arr.push({key: child.key, name: child.val().name, lastname: child.val().lastname, num: child.val().number, course: child.val().course});
-            });
-            console.log(arr);
-            this.tableState = tableState;
-            this.students = __.sortBy(arr, tableState.sort.predicate);
-            if ( tableState.sort.reverse ) {
-              this.students.reverse();
-            }
-            if ( tableState.search.predicateObject ) {
-              this.students = __.where(this.students, tableState.search.predicateObject);
-            }
-            this.isLoading = false;
-            this.updateVals();
-          });
-        };
-
-        this.sendAnn = (key, type, week) => {
-          const annotation = {};
-          annotation.when = week.toString();
-          annotation.type = type;
-          if ( this.currentService.edit ) {
-            fbAPIService.addAnn(key, annotation);
-          }else {
-            const arrToFind = __.filter(this.students, {$id: key});
-            const keyToDel = __.findKey(arrToFind[0].annotations, {when: annotation.when, type: annotation.type});
-            fbAPIService.delAnn(key, keyToDel);
-          }
-          this.updateVals();
-        };
-        this.sendWarning = (name, lastname, key, week) => {
-          currentService.obs = {obsKey: key, obsType: 'OBS', obsWeek: week.toString(), student: `${name} ${lastname}`};
-          currentService.tableState = this.tableState;
-          newObsModal.open();
         };
         this.weeks = calAPIService.getWeekArray();
         this.actualWeek = calAPIService.actualWeek;
